@@ -1,1 +1,1 @@
-__all__ = ['rest', 'telml']
+__all__ = ['rest', 'inboundxml']

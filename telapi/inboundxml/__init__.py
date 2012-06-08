@@ -1,13 +1,9 @@
 from xml.sax.saxutils import escape
-import json
-import os
 from new import classobj
-
-SCHEMA_FILE = os.path.join(os.path.dirname(__file__), '../schema/telapi.json')
-SCHEMA = json.load(open(SCHEMA_FILE))
+from telapi.schema import SCHEMA
 
 class Element(object):
-    """Root XML element. Also, base class for all other TelML elements"""
+    """Root XML element. Also, base class for all other InboundXML elements"""
 
     _allowed_attributes = []
     _allowed_children   = []
@@ -64,6 +60,7 @@ class Element(object):
 
         if name == 'body':
             self._body = value
+            return
 
         self._ensure_attribute(name)
         self._attributes[name] = value
@@ -92,13 +89,15 @@ class Element(object):
 
 
 # Loop through the schema file and dynamically create classes for each element type
-for element, properties in SCHEMA['telml']['verbs'].items():
+for element, properties in SCHEMA['inboundxml']['verbs'].items():
     docstring = """%s element
     -------------------------
+    properties: %s
     Nestable children: %s
     More info: %s
     """ % (
         element, 
+        map(str, properties['attributes']),
         map(str, properties['nesting']), 
         properties['docs_url']
     )

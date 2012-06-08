@@ -7,11 +7,11 @@ def read(fname):
 setup(
     name                = "telapi",
     version             = "0.0.1",
-    description         = "TelAPI REST API client and TelML generator",
+    description         = "TelAPI REST API client and InboundXML generator",
     author              = "TelAPI",
     author_email        = "help@telapi.com",
     url                 = "https://github.com/teltechsystems/telapi-python/",
-    keywords            = ["telapi", "telml"],
+    keywords            = ["telapi", "inboundxml"],
     install_requires    = ["requests"],
     packages            = find_packages(),
     classifiers         = [
