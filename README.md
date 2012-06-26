@@ -27,9 +27,6 @@ export TELAPI_AUTH_TOKEN='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 Quick Start
 -----------
 
-
-```
-
 ```python
 from telapi import rest
 
