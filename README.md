@@ -18,6 +18,8 @@ Protip
 Export the `TELAPI_ACCOUNT_SID` and `TELAPI_AUTH_TOKEN` variables in your environment,
 such as ~/.profile and you won't have to pass your credentials in when intantiating the client.
 
+Account SID and auth token are both found in the [Dashboard](http://www.telapi.com/dashboard)
+
 ```bash
 export TELAPI_ACCOUNT_SID='ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 export TELAPI_AUTH_TOKEN='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
@@ -26,6 +28,8 @@ export TELAPI_AUTH_TOKEN='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 Quick Start
 -----------
+
+Account SID and auth token are both found in the [Dashboard](http://www.telapi.com/dashboard)
 
 ```python
 from telapi import rest
