@@ -1,12 +1,13 @@
 from setuptools import setup, find_packages
 import os
+from telapi import VERSION
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
     name                = "telapi",
-    version             = "0.0.1",
+    version             = VERSION,
     description         = "TelAPI REST API client and InboundXML generator",
     author              = "TelAPI",
     author_email        = "help@telapi.com",
