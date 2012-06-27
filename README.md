@@ -37,7 +37,7 @@ from telapi import rest
 account_sid = 'ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 auth_token  = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 client      = rest.Client(account_sid, auth_token)
-account     = self.client.accounts[client.account_sid]
+account     = client.accounts[client.account_sid]
 voice_url   = 'http://db.tt/YtLJgpa8'
 
 # Let's create a call that will dial someone and say "Hello"

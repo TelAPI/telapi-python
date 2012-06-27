@@ -177,8 +177,8 @@ class TestREST(unittest.TestCase):
 
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
-        call.from_number = "+17328381916"
-        call.to_number = "+17328381916"
+        call.from_number = "+19492660933"
+        call.to_number = "+19492660933"
         call.url = "https://dl.dropbox.com/u/14573179/TML/wait_music.xml"
 
         # Dial

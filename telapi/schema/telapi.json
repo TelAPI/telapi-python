@@ -148,8 +148,7 @@
                 "create_params": {
                     "from": "From",
                     "to": "To",
-                    "url": "Url",
-                    "status": "Status"
+                    "url": "Url"
                 }
             },
             "carrier": {

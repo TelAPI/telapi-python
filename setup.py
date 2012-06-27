@@ -14,6 +14,7 @@ setup(
     url                 = "https://github.com/teltechsystems/telapi-python/",
     keywords            = ["telapi", "inboundxml"],
     install_requires    = ["requests"],
+    data_files          = [("schema", ["telapi.json"])],
     packages            = find_packages(),
     classifiers         = [
         "Programming Language :: Python",
