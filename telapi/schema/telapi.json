@@ -285,7 +285,49 @@
                     "accounts"
                 ],
                 "create_params": {}
+            },
+            "applications": {
+                "name": "Applications",
+                "url": "Applications",
+                "attributes": [
+                    "date_updated",
+                    "voice_url",
+                    "voice_fallback_method",
+                    "sid",
+                    "heartbeat_method",
+                    "status_callback_method",
+                    "voice_fallback_url",
+                    "heartbeat_url",
+                    "sms_url",
+                    "voice_method",
+                    "voice_caller_id_lookup",
+                    "friendly_name",
+                    "uri",
+                    "sms_fallback_url",
+                    "account_sid",
+                    "sms_method",
+                    "api_version",
+                    "sms_fallback_method",
+                    "date_created",
+                    "status_callback"
+                ],
+                "parent_resources": [
+                    "accounts"
+                ],
+                "create_params": {
+                    "friendly_name": "FriendlyName"
+                }
+            },
+            "fraud": {
+                "name": "Fraud",
+                "url": "Fraud",
+                "attributes": [],
+                "parent_resources": [
+                    "accounts"
+                ],
+                "create_params": {}
             }
+
         },
         "pagination": [
             "page",
