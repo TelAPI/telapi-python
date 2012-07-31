@@ -178,14 +178,14 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+19492660933"
-        call.to_number = "+19492660933"
+        call.to_number = "+17328381916"
         call.url = "https://dl.dropbox.com/u/14573179/TML/wait_music.xml"
 
         # Dial
         call.save()
 
         # Wait a bit
-        time.sleep(10)
+        time.sleep(20)
 
         # Hangup
         call.status = "Completed"

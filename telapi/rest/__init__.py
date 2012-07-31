@@ -310,11 +310,18 @@ class InstanceResource(Resource):
     def save(self):
         data = {}
 
-        for attr, param in self._create_params.items():
-            attr_value = getattr(self, attr)
-            print 'save', attr, param, attr_value
-            if attr_value:
-                data[param] = attr_value
+        if not self._populated:
+            for attr, param in self._create_params.items():
+                attr_value = getattr(self, attr)
+                print 'save create', attr, param, attr_value
+                if attr_value:
+                    data[param] = attr_value
+        else:
+            for attr, param in self._update_params.items():
+                attr_value = getattr(self, attr)
+                print 'save update', attr, param, attr_value
+                if attr_value:
+                    data[param] = attr_value
 
         resource_data = self._client._post(self._url + ".json", data)
         self._full_url = None
@@ -357,9 +364,9 @@ class Client(object):
             raise exceptions.AuthTokenError()
 
     def _send_request(self, resource_uri, method, params=None):
-        # print
-        # print "_send_request", resource_uri, method, params
-        # print
+        print
+        print "_send_request", self.base_url, resource_uri, method, params
+        print
 
         url = self.base_url + resource_uri
         extra_params = {
@@ -386,7 +393,11 @@ class Client(object):
 
         # print 'response.text', response.text
 
-        return json.loads(response.text)
+        try:
+            return json.loads(response.text)
+        except ValueError, e:
+            print 'Bad JSON returned! response.text:\n', response.text
+            raise
 
     def _get(self, resource_uri, params=None):
         return self._send_request(resource_uri, "GET", params)
@@ -416,7 +427,6 @@ class Client(object):
 
 
 # Create Classes for all REST resources dynamically
-# TODO: I think the schema for the rest resources should have parents listed isntead of children
 for element, properties in SCHEMA["rest_api"]["components"].items():
 
     # Create Instance Resource Class
@@ -436,11 +446,12 @@ for element, properties in SCHEMA["rest_api"]["components"].items():
     resource_dict = {
         "_allowed_attributes"   : properties["attributes"],
         "_parent_resources"     : properties["parent_resources"],
-        "_short_url"                  : properties["url"],
+        "_short_url"            : properties["url"],
         "__doc__"               : docstring,
         "_name"                 : properties["name"],
         "_short_name"           : element,
-        "_create_params"        : properties["create_params"],
+        "_create_params"        : properties.get("create_params", {}),
+        "_update_params"        : properties.get("update_params", {}),
     }
     globals()[class_name] = classobj(class_name, (InstanceResource,), resource_dict)
 
