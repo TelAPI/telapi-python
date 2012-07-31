@@ -125,7 +125,7 @@
                     "from",
                     "privacy_hide_number",
                     "url",
-					"action",
+                    "action",
                     "date_updated",
                     "answered_by",
                     "start_time",
@@ -152,7 +152,30 @@
                     "url": "Url"
                 },
                 "update_params": {
-                    "status": "Status"
+                    "status": "Status",
+                    "play_dtmf": "PlayDtmf",
+                    "play_dtmf_leg": "PlayDtmfLeg"
+                }
+            },
+            "plays": {
+                "name": "Play",
+                "url": "Play",
+                "attributes": [
+                    "sounds",
+                    "legs",
+                    "mix",
+                    "length",
+                    "loop"
+                ],
+                "parent_resources": [
+                    "calls"
+                ],
+                "create_params": {
+                    "sounds": "Sounds",
+                    "legs": "Legs",
+                    "mix": "Mix",
+                    "length": "Length",
+                    "loop": "Loop"
                 }
             },
             "carrier": {

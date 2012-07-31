@@ -259,19 +259,24 @@ class InstanceResource(Resource):
 
     def fetch(self, resource_data=None):
         """Populates this class with remote data"""
-        if not resource_data:
-            resource_data = self._client._get(self._url + ".json")
+        try:
+            if not resource_data:
+                resource_data = self._client._get(self._url + ".json")
 
-        for name in self._allowed_attributes:
-            setattr(self, name, resource_data.get(name, None))
+            for name in self._allowed_attributes:
+                setattr(self, name, resource_data.get(name, None))
 
-        if 'sid' in self._allowed_attributes:
-            self._short_url = self.sid
-        else:
-            self._short_url = ""
+            if 'sid' in self._allowed_attributes:
+                self._short_url = self.sid
+            else:
+                self._short_url = ""
 
-        self._populated = True
-        self._resource_data = resource_data
+            self._populated = True
+            self._resource_data = resource_data
+        except exceptions.RequestError, e:
+            if not e.http_code == 405:
+                print e
+                raise
 
     def __getattr__(self, name):
         if name.startswith('_'):
@@ -300,7 +305,7 @@ class InstanceResource(Resource):
         elif name == "to_number":
             name = "to"
 
-        if name.startswith('_') or name in self._allowed_attributes:
+        if name.startswith('_') or name in self._allowed_attributes or name in self._create_params or name in self._update_params:
             return object.__setattr__(self, name, value)
         
         raise AttributeError("'%s' not a valid attribute of %s (allowed attributes: %s)" % (name, self, self._allowed_attributes))
@@ -312,16 +317,26 @@ class InstanceResource(Resource):
 
         if not self._populated:
             for attr, param in self._create_params.items():
-                attr_value = getattr(self, attr)
-                print 'save create', attr, param, attr_value
-                if attr_value:
-                    data[param] = attr_value
+                try:
+                    attr_value = getattr(self, attr, None)
+                    print 'save create', attr, param, attr_value
+                    if attr_value is not None:
+                        data[param] = attr_value
+                except AttributeError:
+                    # This is probably an update/create attribute that was not set
+                    pass
         else:
             for attr, param in self._update_params.items():
-                attr_value = getattr(self, attr)
-                print 'save update', attr, param, attr_value
-                if attr_value:
-                    data[param] = attr_value
+                try:
+                    attr_value = getattr(self, attr, None)
+                    print 'save update', attr, param, attr_value
+                    if attr_value is not None:
+                        data[param] = attr_value
+                except AttributeError:
+                    # This is probably an update/create attribute that was not set
+                    pass
+
+        print 'save data:', data
 
         resource_data = self._client._post(self._url + ".json", data)
         self._full_url = None
@@ -387,16 +402,16 @@ class Client(object):
         if response.status_code >= 400:
                 try:
                     error = json.loads(response.text)
-                    raise exceptions.RequestError("Error code %s. %s. More info at %s" % (error["code"], error["message"], error["more_info"]))
+                    raise exceptions.RequestError("Error code %s. %s. More info at %s" % (error["code"], error["message"], error["more_info"]), error_code=error["code"], http_code=response.status_code)
                 except ValueError:
-                    raise exceptions.RequestError("Errror requesting %s to '%s'. Status code: %s" % (method, url, response.status_code))
-
-        # print 'response.text', response.text
+                    raise exceptions.RequestError("Errror requesting %s to '%s'. Status code: %s" % (method, url, response.status_code), http_code=response.status_code)
 
         try:
             return json.loads(response.text)
         except ValueError, e:
-            print 'Bad JSON returned! response.text:\n', response.text
+            print 'Bad JSON returned! response.text:'
+            print response.text
+
             raise
 
     def _get(self, resource_uri, params=None):
@@ -476,6 +491,7 @@ for element, properties in SCHEMA["rest_api"]["components"].items():
         "_name"                 : properties["name"],
         "_short_name"           : element,
         "_filter_params"        : properties.get("filter_params", []),
+        "_fetchable"            : properties.get("fetchable", True)
     }
     globals()[class_name] = classobj(class_name, (ListResource,), resource_dict)
 

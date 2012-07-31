@@ -1,5 +1,9 @@
 class RestError(Exception):
-    pass
+    def __init__(self, message, error_code=None, http_code=None):
+        Exception.__init__(self, message)
+        self.message    = message
+        self.error_code = error_code
+        self.http_code  = http_code
 
 class AccountSidError(RestError):
     message = "Please pass account_sid when instantiating the REST API Client or set the environment variable `TELAPI_ACCOUNT_SID`.\

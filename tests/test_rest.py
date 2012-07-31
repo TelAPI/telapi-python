@@ -191,6 +191,48 @@ class TestREST(unittest.TestCase):
         call.status = "Completed"
         call.save()
 
+    def test_call_dtmf(self):
+        account = self.client.accounts[self.client.account_sid]
+
+        # Use alternate syntax to create to update properties before saving
+        call = account.calls.new()
+        call.from_number = "+19492660933"
+        call.to_number = "+17328381916"
+        call.url = "https://dl.dropbox.com/u/14573179/TML/wait_music.xml"
+
+        # Dial
+        call.save()
+
+        # Wait a bit
+        time.sleep(20)
+
+        # Play DTMF on b leg
+        call.play_dtmf = "123w456ww789"
+        call.play_dtmf_leg = "bleg"
+        call.save()
+
+    def test_call_play_sound(self):
+        account = self.client.accounts[self.client.account_sid]
+
+        # Use alternate syntax to create to update properties before saving
+        call = account.calls.new()
+        call.from_number = "+19492660933"
+        call.to_number = "+17328381916"
+        call.url = "https://dl.dropbox.com/u/14573179/TML/pause.xml"
+
+        # Dial
+        call.save()
+
+        # Wait a bit
+        time.sleep(10)
+
+        # Play sounds
+        play = call.plays.new()
+        play.sounds = "https://dl.dropbox.com/u/14573179/Audio/Freeswitch/sounds/en/us/callie/misc/8000/sorry.wav,https://dl.dropbox.com/u/14573179/Audio/Freeswitch/sounds/en/us/callie/misc/8000/call_secured.wav"
+        play.mix = True
+        play.legs = 'aleg'
+        play.save()
+
 
 if __name__ == '__main__':
     unittest.main()
