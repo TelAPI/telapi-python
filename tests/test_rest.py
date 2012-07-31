@@ -179,7 +179,7 @@ class TestREST(unittest.TestCase):
         call = account.calls.new()
         call.from_number = "+19492660933"
         call.to_number = "+17328381916"
-        call.url = "https://dl.dropbox.com/u/14573179/TML/wait_music.xml"
+        call.url = "https://dl.dropbox.com/u/14573179/InboundXML/wait_music.xml"
 
         # Dial
         call.save()
@@ -198,7 +198,7 @@ class TestREST(unittest.TestCase):
         call = account.calls.new()
         call.from_number = "+19492660933"
         call.to_number = "+17328381916"
-        call.url = "https://dl.dropbox.com/u/14573179/TML/wait_music.xml"
+        call.url = "https://dl.dropbox.com/u/14573179/InboundXML/wait_music.xml"
 
         # Dial
         call.save()
@@ -218,7 +218,7 @@ class TestREST(unittest.TestCase):
         call = account.calls.new()
         call.from_number = "+19492660933"
         call.to_number = "+17328381916"
-        call.url = "https://dl.dropbox.com/u/14573179/TML/pause.xml"
+        call.url = "https://dl.dropbox.com/u/14573179/InboundXML/pause.xml"
 
         # Dial
         call.save()
@@ -241,7 +241,7 @@ class TestREST(unittest.TestCase):
         call = account.calls.new()
         call.from_number = "+19492660933"
         call.to_number = "+17328381916"
-        call.url = "https://dl.dropbox.com/u/14573179/TML/dial_cell.xml"
+        call.url = "https://dl.dropbox.com/u/14573179/InboundXML/dial_cell.xml"
 
         # Dial
         call.save()
