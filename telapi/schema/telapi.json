@@ -178,6 +178,27 @@
                     "loop": "Loop"
                 }
             },
+            "effects": {
+                "name": "Effect",
+                "url": "Effect",
+                "attributes": [
+                    "audio_direction",
+                    "pitch",
+                    "pitch_semi_tones",
+                    "pitch_octaves",
+                    "rate"
+                ],
+                "parent_resources": [
+                    "calls"
+                ],
+                "create_params": {
+                    "audio_direction": "AudioDirection",
+                    "pitch": "Pitch",
+                    "pitch_semi_tones": "PitchSemiTones",
+                    "pitch_octaves": "PitchOctaves",
+                    "rate": "Rate"
+                }
+            },
             "carrier": {
                 "name": "Carrier",
                 "url": "Carrier",

@@ -229,10 +229,30 @@ class TestREST(unittest.TestCase):
         # Play sounds
         play = call.plays.new()
         play.sounds = "https://dl.dropbox.com/u/14573179/Audio/Freeswitch/sounds/en/us/callie/misc/8000/sorry.wav,https://dl.dropbox.com/u/14573179/Audio/Freeswitch/sounds/en/us/callie/misc/8000/call_secured.wav"
-        play.mix = True
+        play.mix = False
         play.legs = 'aleg'
         play.save()
 
+
+    def test_call_voice_warp(self):
+        account = self.client.accounts[self.client.account_sid]
+
+        # Use alternate syntax to create to update properties before saving
+        call = account.calls.new()
+        call.from_number = "+19492660933"
+        call.to_number = "+17328381916"
+        call.url = "https://dl.dropbox.com/u/14573179/TML/dial_cell.xml"
+
+        # Dial
+        call.save()
+
+        # Wait a bit
+        time.sleep(10)
+
+        # Play sounds
+        effect = call.effects.new()
+        effect.pitch = .5
+        effect.save()
 
 if __name__ == '__main__':
     unittest.main()
