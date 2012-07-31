@@ -178,7 +178,7 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+19492660933"
-        call.to_number = "+17328381916"
+        call.to_number = "+15558381916"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/wait_music.xml"
 
         # Dial
@@ -197,7 +197,7 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+19492660933"
-        call.to_number = "+17328381916"
+        call.to_number = "+15558381916"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/wait_music.xml"
 
         # Dial
@@ -217,7 +217,7 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+19492660933"
-        call.to_number = "+17328381916"
+        call.to_number = "+15558381916"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/pause.xml"
 
         # Dial
@@ -240,7 +240,7 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+19492660933"
-        call.to_number = "+17328381916"
+        call.to_number = "+15558381916"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/dial_cell.xml"
 
         # Dial
@@ -254,5 +254,31 @@ class TestREST(unittest.TestCase):
         effect.pitch = .5
         effect.save()
 
+    def test_call_record(self):
+        account = self.client.accounts[self.client.account_sid]
+
+        # Use alternate syntax to create to update properties before saving
+        call = account.calls.new()
+        call.from_number = "+19492660933"
+        call.to_number = "+17328381916"
+        call.url = "https://dl.dropbox.com/u/14573179/InboundXML/pause.xml"
+
+        # Dial
+        call.save()
+
+        # Wait a bit
+        time.sleep(10)
+
+        # Play sounds
+        recording = call.recordings.new()
+        recording.record = True
+        recording.callback_url = "http://liveoutput.com/hHWXvdf7"
+        recording.time_limit = 10
+        recording.save()
+
 if __name__ == '__main__':
     unittest.main()
+
+
+
+

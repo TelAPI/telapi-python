@@ -62,7 +62,11 @@
                     "accounts",
                     "calls"
                 ],
-                "create_params": {}
+                "create_params": {
+                    "record": "Record",
+                    "time_limit": "TimeLimit",
+                    "callback_url": "CallbackUrl"
+                }
             },
             "sms_messages": {
                 "name": "SMSMessage",
