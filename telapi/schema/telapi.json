@@ -190,7 +190,9 @@
                     "pitch",
                     "pitch_semi_tones",
                     "pitch_octaves",
-                    "rate"
+                    "rate",
+                    "autotune_tune",
+                    "autotune_shift"
                 ],
                 "parent_resources": [
                     "calls"
@@ -200,7 +202,9 @@
                     "pitch": "Pitch",
                     "pitch_semi_tones": "PitchSemiTones",
                     "pitch_octaves": "PitchOctaves",
-                    "rate": "Rate"
+                    "rate": "Rate",
+                    "autotune_tune": "AutotuneTune",
+                    "autotune_shift": "AutotuneShift"
                 }
             },
             "carrier": {

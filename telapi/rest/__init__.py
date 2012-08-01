@@ -401,17 +401,22 @@ class Client(object):
 
         if response.status_code >= 400:
                 try:
-                    error = json.loads(response.text)
+                    error = json.loads(response.content)
                     raise exceptions.RequestError("Error code %s. %s. More info at %s" % (error["code"], error["message"], error["more_info"]), error_code=error["code"], http_code=response.status_code)
                 except ValueError:
                     raise exceptions.RequestError("Errror requesting %s to '%s'. Status code: %s" % (method, url, response.status_code), http_code=response.status_code)
 
         try:
-            return json.loads(response.text)
+            return json.loads(response.content)
         except ValueError, e:
             print 'Bad JSON returned! response.text:'
             print response.text
 
+            raise
+        except:
+            print 'Bad Response!'
+            print response, dir(response)
+            
             raise
 
     def _get(self, resource_uri, params=None):

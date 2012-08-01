@@ -217,14 +217,14 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+19492660933"
-        call.to_number = "+15558381916"
-        call.url = "https://dl.dropbox.com/u/14573179/InboundXML/pause.xml"
+        call.to_number = "+17328381916"
+        call.url = "https://dl.dropbox.com/u/14573179/InboundXML/dial_cell.xml"
 
         # Dial
         call.save()
 
         # Wait a bit
-        time.sleep(10)
+        time.sleep(20)
 
         # Play sounds
         play = call.plays.new()
@@ -249,7 +249,7 @@ class TestREST(unittest.TestCase):
         # Wait a bit
         time.sleep(10)
 
-        # Play sounds
+        # Start Effect
         effect = call.effects.new()
         effect.pitch = .5
         effect.save()
@@ -280,6 +280,27 @@ class TestREST(unittest.TestCase):
 
         # Start recording
         call.recordings.new(record=False).save()
+
+    def test_call_autotune(self):
+        account = self.client.accounts[self.client.account_sid]
+
+        # Use alternate syntax to create to update properties before saving
+        call = account.calls.new()
+        call.from_number = "+19492660933"
+        call.to_number = "+15558381916"
+        call.url = "https://dl.dropbox.com/u/14573179/TML/dial_cell.xml"
+
+        # Dial
+        call.save()
+
+        # Wait a bit
+        time.sleep(10)
+
+        # Start Effect
+        effect = call.effects.new()
+        effect.autotune_tune = 1
+        effect.autotune_shift = 1
+        effect.save()
 
 if __name__ == '__main__':
     unittest.main()
