@@ -104,10 +104,10 @@ class TestREST(unittest.TestCase):
         sms_list = self.client.accounts[self.client.account_sid].sms_messages
         from_number = to_number = self.test_cell_number
         body = "Hello from telapi-python!"
-        sms = sms_list.create(from_number='+12704611723', to_number=to_number, body=body)
+        sms = sms_list.create(from_number=from_number, to_number=to_number, body=body)
         self.assertTrue(sms.sid.startswith('SM'))
         self.assertEquals(sms.body, body)
-        self.assertEquals(sms.from_number, '+12704611723')
+        self.assertEquals(sms.from_number, from_number)
         self.assertEquals(sms.to_number, to_number)
 
     def test_incoming_phone_numbers(self):
