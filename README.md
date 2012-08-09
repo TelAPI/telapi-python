@@ -8,7 +8,7 @@ manage outbound calls and SMS messages as well as generate InboundXML to handle 
 Installation
 ------------
 
-Download the latest source from https://github.com/teltechsystems/telapi-python/zipball/master or checkout the code, 
+Download the latest source from https://github.com/telapi/telapi-python/zipball/master or checkout the code, 
 then `cd` into the resulting directory and run `python setup.py install`.
 
 
