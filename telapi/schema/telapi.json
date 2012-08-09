@@ -228,7 +228,10 @@
                 "parent_resources": [
                     "accounts"
                 ],
-                "create_params": {}
+                "create_params": {},
+		"filter_params": [
+			"PhoneNumber"
+		]
             },
             "cnam": {
                 "name": "CNAM",
@@ -247,7 +250,10 @@
                 "parent_resources": [
                     "accounts"
                 ],
-                "create_params": {}
+                "create_params": {},
+		"filter_params": [
+			"PhoneNumber"
+		]
             },
             "incoming_phone_numbers": {
                 "name": "IncomingPhoneNumber",
