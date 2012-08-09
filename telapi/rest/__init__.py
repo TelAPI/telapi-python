@@ -410,7 +410,7 @@ class Client(object):
             return json.loads(response.content)
         except ValueError, e:
             print 'Bad JSON returned! response.text:'
-            print response.text
+            print response.content
 
             raise
         except:

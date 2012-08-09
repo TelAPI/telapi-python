@@ -7,7 +7,7 @@ from telapi import rest
 class TestREST(unittest.TestCase):
     def setUp(self):
         # Environment variables must be set for TELAPI_ACCOUNT_SID and TELAPI_AUTH_TOKEN
-        self.client = rest.Client(base_url='https://api.dev.telapi.com/2011-07-01/')
+        self.client = rest.Client(base_url='https://api.telapi.com/2011-07-01/')
         # self.client = rest.Client()
         self.test_cell_number = os.environ.get('TELAPI_TEST_NUMBER')
 
@@ -104,10 +104,10 @@ class TestREST(unittest.TestCase):
         sms_list = self.client.accounts[self.client.account_sid].sms_messages
         from_number = to_number = self.test_cell_number
         body = "Hello from telapi-python!"
-        sms = sms_list.create(from_number=from_number, to_number=to_number, body=body)
+        sms = sms_list.create(from_number='+12704611723', to_number=to_number, body=body)
         self.assertTrue(sms.sid.startswith('SM'))
         self.assertEquals(sms.body, body)
-        self.assertEquals(sms.from_number, from_number)
+        self.assertEquals(sms.from_number, '+12704611723')
         self.assertEquals(sms.to_number, to_number)
 
     def test_incoming_phone_numbers(self):
@@ -260,7 +260,7 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+19492660933"
-        call.to_number = "+15558381916"
+        call.to_number = "+17328381916"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/pause.xml"
 
         # Dial
@@ -287,19 +287,19 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+19492660933"
-        call.to_number = "+15558381916"
+        call.to_number = "+17328381916"
         call.url = "https://dl.dropbox.com/u/14573179/TML/dial_cell.xml"
 
         # Dial
         call.save()
 
         # Wait a bit
-        time.sleep(10)
+        time.sleep(15)
 
         # Start Effect
         effect = call.effects.new()
-        effect.autotune_tune = 1
-        effect.autotune_shift = 1
+        effect.autotune_tune = -1
+        effect.autotune_shift = 12
         effect.save()
 
 if __name__ == '__main__':

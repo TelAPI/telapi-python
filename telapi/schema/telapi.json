@@ -282,7 +282,20 @@
                     "accounts"
                 ],
                 "create_params": {
+                    "friendly_name": "FriendlyName",
                     "phone_number": "PhoneNumber",
+                    "voice_url": "VoiceUrl",
+                    "voice_method": "VoiceMethod",
+                    "voice_fallback_method": "VoiceFallbackMethod",
+                    "sms_url": "SmsUrl",
+                    "sms_method": "SmsMethod",
+                    "sms_fallback_url": "SmsFallbackUrl",
+                    "sms_fallback_method": "SmsFallbackMethod",
+                    "hangup_callback": "HangupCallback",
+                    "hangup_callback_method": "HangupCallbackMethod"
+                },
+                "update_params": {
+                    "voice_url": "VoiceUrl",
                     "voice_url": "VoiceUrl"
                 }
             },
