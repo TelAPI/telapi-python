@@ -158,7 +158,8 @@
                 "update_params": {
                     "status": "Status",
                     "play_dtmf": "PlayDtmf",
-                    "play_dtmf_leg": "PlayDtmfLeg"
+                    "play_dtmf_leg": "PlayDtmfLeg",
+                    "url": "Url"
                 }
             },
             "plays": {

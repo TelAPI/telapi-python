@@ -7,9 +7,9 @@ from telapi import rest
 class TestREST(unittest.TestCase):
     def setUp(self):
         # Environment variables must be set for TELAPI_ACCOUNT_SID and TELAPI_AUTH_TOKEN
-        self.client = rest.Client(base_url='https://api.telapi.com/2011-07-01/')
+        self.client = rest.Client(base_url='https://api.dev.telapi.com/2011-07-01/')
         # self.client = rest.Client()
-        self.test_cell_number = os.environ.get('TELAPI_TEST_NUMBER')
+        self.test_number = os.environ.get('TELAPI_TEST_NUMBER')
 
         if not os.environ.get('TELAPI_ACCOUNT_SID'):
             raise Exception("Please set the TELAPI_ACCOUNT_SID, TELAPI_AUTH_TOKEN and TELAPI_TEST_NUMBER environment variables to run the tests!")
@@ -102,7 +102,7 @@ class TestREST(unittest.TestCase):
 
     def test_sms_send(self):
         sms_list = self.client.accounts[self.client.account_sid].sms_messages
-        from_number = to_number = self.test_cell_number
+        from_number = to_number = self.test_number
         body = "Hello from telapi-python!"
         sms = sms_list.create(from_number=from_number, to_number=to_number, body=body)
         self.assertTrue(sms.sid.startswith('SM'))
@@ -260,7 +260,7 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+19492660933"
-        call.to_number = "+17328381916"
+        call.to_number = "+15555555555"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/pause.xml"
 
         # Dial
@@ -286,8 +286,8 @@ class TestREST(unittest.TestCase):
 
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
-        call.from_number = "+19492660933"
-        call.to_number = "+17328381916"
+        call.from_number = "+15555555555"
+        call.to_number = self.test_number
         call.url = "https://dl.dropbox.com/u/14573179/TML/dial_cell.xml"
 
         # Dial
@@ -301,6 +301,28 @@ class TestREST(unittest.TestCase):
         effect.autotune_tune = -1
         effect.autotune_shift = 12
         effect.save()
+
+    def test_call_redirect(self):
+        account = self.client.accounts[self.client.account_sid]
+
+        # Typecast to list to make sure enumeration works
+        list(account.calls)
+
+        # Use alternate syntax to create to update properties before saving
+        call = account.calls.new()
+        call.from_number = "+19492660933"
+        call.to_number = self.test_number
+        call.url = "http://dl.dropbox.com/u/xxxx/sound.xml"
+
+        # Dial
+        call.save()
+
+        # Wait a bit
+        time.sleep(15)
+
+        # Redirect
+        call.url = 'http://dl.dropbox.com/u/xxxx/redirect.xml'
+        call.save()
 
 if __name__ == '__main__':
     unittest.main()
