@@ -1,4 +1,5 @@
 import json
-import pkg_resources
+import os
 
-SCHEMA = json.load(pkg_resources.resource_string(__name__, "telapi.json"))
+SCHEMA_FILE = os.path.join(os.path.dirname(__file__), 'telapi.json')
+SCHEMA = json.load(open(SCHEMA_FILE))
