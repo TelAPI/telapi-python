@@ -1,2 +1,2 @@
-__all__ = ['rest', 'inboundxml', 'utils']
-VERSION = '0.1.3'
+__all__ = ['rest', 'inboundxml', 'utils', 'schema']
+VERSION = '0.1.4'
