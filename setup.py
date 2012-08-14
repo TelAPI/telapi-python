@@ -2,9 +2,6 @@ from setuptools import setup, find_packages
 import os
 from telapi import VERSION
 
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
 setup(
     name                = "telapi",
     version             = VERSION,
@@ -20,9 +17,10 @@ setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Communications :: Telephony"
     ],
-    long_description    = read('README.md'),
+    long_description    = """This library interacts with the TelAPI service. It allows you to use the REST API in a pythonic way to initiate and 
+manage outbound calls and SMS messages as well as generate InboundXML to handle incoming calls and SMS messages. Check out http://telapi.com for free credits.""",
 )
