@@ -305,9 +305,6 @@ class TestREST(unittest.TestCase):
     def test_call_redirect(self):
         account = self.client.accounts[self.client.account_sid]
 
-        # Typecast to list to make sure enumeration works
-        list(account.calls)
-
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+19492660933"
