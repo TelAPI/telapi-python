@@ -3,7 +3,7 @@ import os
 from telapi import VERSION
 
 setup(
-    name                = "telapi",
+    name                = "TelAPI",
     version             = VERSION,
     description         = "TelAPI REST API client and InboundXML generator",
     author              = "TelAPI",
@@ -12,6 +12,7 @@ setup(
     keywords            = ["telapi", "inboundxml", "telephony", "rest"],
     install_requires    = ["requests"],
     packages            = find_packages(),
+    package_data        = {'telapi': ['data/*.json']},
     classifiers         = [
         "Programming Language :: Python",
         "Operating System :: OS Independent",
