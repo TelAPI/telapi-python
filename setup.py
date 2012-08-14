@@ -11,8 +11,8 @@ setup(
     description         = "TelAPI REST API client and InboundXML generator",
     author              = "TelAPI",
     author_email        = "help@telapi.com",
-    url                 = "https://github.com/teltechsystems/telapi-python/",
-    keywords            = ["telapi", "inboundxml"],
+    url                 = "https://github.com/telapi/telapi-python/",
+    keywords            = ["telapi", "inboundxml", "telephony", "rest"],
     install_requires    = ["requests"],
     packages            = find_packages(),
     classifiers         = [
