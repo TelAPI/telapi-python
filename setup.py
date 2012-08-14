@@ -1,9 +1,9 @@
-from setuptools import setup, find_packages
+from distutils.core import setup
 import os
 from telapi import VERSION
 
 setup(
-    name                = "TelAPI",
+    name                = "telapi",
     version             = VERSION,
     description         = "TelAPI REST API client and InboundXML generator",
     author              = "TelAPI",
@@ -11,7 +11,7 @@ setup(
     url                 = "https://github.com/telapi/telapi-python/",
     keywords            = ["telapi", "inboundxml", "telephony", "rest"],
     install_requires    = ["requests"],
-    packages            = find_packages(),
+    packages            = ['telapi'],
     package_data        = {'telapi': ['data/*.json']},
     classifiers         = [
         "Programming Language :: Python",
