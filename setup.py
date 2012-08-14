@@ -12,6 +12,7 @@ setup(
     keywords            = ["telapi", "inboundxml", "telephony", "rest"],
     install_requires    = ["requests"],
     packages            = find_packages(),
+    package_data        = {'telapi': ['data/*']}),
     classifiers         = [
         "Programming Language :: Python",
         "Operating System :: OS Independent",
