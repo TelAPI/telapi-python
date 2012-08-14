@@ -1,2 +1,2 @@
 __all__ = ['rest', 'inboundxml', 'utils']
-VERSION = '0.0.4'
+VERSION = '0.1.0'
