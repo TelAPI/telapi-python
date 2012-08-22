@@ -151,7 +151,7 @@ class ListResource(Resource):
     def __len__(self):
         self.fetch()
 
-        return self._page_end - self._page_start + 1
+        return self._page_end - self._page_start
 
     def __iter__(self):
         return self
@@ -405,6 +405,10 @@ class Client(object):
                     raise exceptions.RequestError("Error code %s. %s. More info at %s" % (error["code"], error["message"], error["more_info"]), error_code=error["code"], http_code=response.status_code)
                 except ValueError:
                     raise exceptions.RequestError("Errror requesting %s to '%s'. Status code: %s" % (method, url, response.status_code), http_code=response.status_code)
+
+        print
+        print response.content
+        print
 
         try:
             return json.loads(response.content)

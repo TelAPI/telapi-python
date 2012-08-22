@@ -7,7 +7,7 @@ from telapi import rest
 class TestREST(unittest.TestCase):
     def setUp(self):
         # Environment variables must be set for TELAPI_ACCOUNT_SID and TELAPI_AUTH_TOKEN
-        self.client = rest.Client(base_url='https://api.dev.telapi.com/2011-07-01/')
+        self.client = rest.Client(base_url='https://api.telapi.com/2011-07-01/')
         # self.client = rest.Client()
         self.test_number = os.environ.get('TELAPI_TEST_NUMBER')
 
@@ -177,7 +177,7 @@ class TestREST(unittest.TestCase):
 
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
-        call.from_number = "+19492660933"
+        call.from_number = "+15552660933"
         call.to_number = "+15558381916"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/wait_music.xml"
 
@@ -196,7 +196,7 @@ class TestREST(unittest.TestCase):
 
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
-        call.from_number = "+19492660933"
+        call.from_number = "+15552660933"
         call.to_number = "+15558381916"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/wait_music.xml"
 
@@ -216,8 +216,8 @@ class TestREST(unittest.TestCase):
 
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
-        call.from_number = "+19492660933"
-        call.to_number = "+17328381916"
+        call.from_number = "+15552660933"
+        call.to_number = "+15558381916"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/dial_cell.xml"
 
         # Dial
@@ -239,7 +239,7 @@ class TestREST(unittest.TestCase):
 
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
-        call.from_number = "+19492660933"
+        call.from_number = "+15552660933"
         call.to_number = "+15558381916"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/dial_cell.xml"
 
@@ -259,7 +259,7 @@ class TestREST(unittest.TestCase):
 
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
-        call.from_number = "+19492660933"
+        call.from_number = "+15552660933"
         call.to_number = "+15555555555"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/pause.xml"
 
@@ -307,7 +307,7 @@ class TestREST(unittest.TestCase):
 
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
-        call.from_number = "+19492660933"
+        call.from_number = "+15552660933"
         call.to_number = self.test_number
         call.url = "http://dl.dropbox.com/u/xxxx/sound.xml"
 
@@ -320,6 +320,16 @@ class TestREST(unittest.TestCase):
         # Redirect
         call.url = 'http://dl.dropbox.com/u/xxxx/redirect.xml'
         call.save()
+
+    def test_cnam_lookup(self):
+        cnam_list = self.client.accounts[self.client.account_sid].cnam_dips.filter(PhoneNumber=self.test_number)
+
+        for i, cnam in enumerate(cnam_list):
+            print '********************** CNAM ****************'
+            self.assertTrue(cnam.body)
+            self.assertEquals(cnam.phone_number, self.test_number)
+
+        self.assertEquals(len(cnam_list), 1)
 
 if __name__ == '__main__':
     unittest.main()

@@ -230,7 +230,7 @@
                 ],
                 "create_params": {}
             },
-            "cnam": {
+            "cnam_dips": {
                 "name": "CNAM",
                 "url": "CNAM",
                 "attributes": [
@@ -247,7 +247,10 @@
                 "parent_resources": [
                     "accounts"
                 ],
-                "create_params": {}
+                "create_params": {},
+                "filter_params": [
+                    "PhoneNumber"
+                ]
             },
             "incoming_phone_numbers": {
                 "name": "IncomingPhoneNumber",
