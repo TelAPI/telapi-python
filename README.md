@@ -16,7 +16,7 @@ Protip
 ------
 
 Export the `TELAPI_ACCOUNT_SID` and `TELAPI_AUTH_TOKEN` variables in your environment,
-such as ~/.profile and you won't have to pass your credentials in when intantiating the client.
+such as ~/.profile and you won't have to pass your credentials in when instantiating the client.
 
 Account SID and auth token are both found in the [Dashboard](http://www.telapi.com/dashboard)
 
