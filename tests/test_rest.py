@@ -197,17 +197,17 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+15552660933"
-        call.to_number = "+15558381916"
+        call.to_number = "+17602836505"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/wait_music.xml"
 
         # Dial
         call.save()
 
         # Wait a bit
-        time.sleep(20)
+        time.sleep(40)
 
         # Play DTMF on b leg
-        call.play_dtmf = "123w456ww789"
+        call.play_dtmf = "1*2#3w456ww789"
         call.play_dtmf_leg = "bleg"
         call.save()
 
@@ -260,7 +260,7 @@ class TestREST(unittest.TestCase):
         # Use alternate syntax to create to update properties before saving
         call = account.calls.new()
         call.from_number = "+15552660933"
-        call.to_number = "+15555555555"
+        call.to_number = "+17328381916"
         call.url = "https://dl.dropbox.com/u/14573179/InboundXML/pause.xml"
 
         # Dial

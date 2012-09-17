@@ -89,6 +89,7 @@
                     "accounts"
                 ],
                 "create_params": {
+                    "status_callback": "StatusCallback",
                     "from": "From",
                     "to": "To",
                     "body": "Body"

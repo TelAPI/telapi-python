@@ -127,5 +127,10 @@ class TestAllTelml(unittest.TestCase):
             '<Response><Say>You are about to enter the conference</Say><Dial><Conference>Conference Room A</Conference></Dial></Response>'
         )
 
+    # SMS
+    def test_sms(self):
+        self.response.append(inboundxml.Sms(from_number="+15556669999", to_number="+12223334444", body="Hi there!"))
+        self.assertEqual(str(self.response), '<Response><Gather></Gather></Response>')
+
 if __name__ == '__main__':
     unittest.main()
