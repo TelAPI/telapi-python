@@ -336,7 +336,7 @@ class InstanceResource(Resource):
                     # This is probably an update/create attribute that was not set
                     pass
 
-        print 'save data:', data
+        # print 'save data:', data
 
         resource_data = self._client._post(self._url + ".json", data)
         self._full_url = None
@@ -379,9 +379,9 @@ class Client(object):
             raise exceptions.AuthTokenError()
 
     def _send_request(self, resource_uri, method, params=None):
-        print
-        print "_send_request", self.base_url, resource_uri, method, params
-        print
+        # print
+        # print "_send_request", self.base_url, resource_uri, method, params
+        # print
 
         url = self.base_url + resource_uri
         extra_params = {
@@ -406,9 +406,9 @@ class Client(object):
                 except ValueError:
                     raise exceptions.RequestError("Errror requesting %s to '%s'. Status code: %s" % (method, url, response.status_code), http_code=response.status_code)
 
-        print
-        print response.content
-        print
+        # print
+        # print response.content
+        # print
 
         try:
             return json.loads(response.content)
