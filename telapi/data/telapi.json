@@ -93,7 +93,11 @@
                     "from": "From",
                     "to": "To",
                     "body": "Body"
-                }
+                },
+                "filter_params": [
+                    "To",
+                    "From"
+                ]
             },
             "transcriptions": {
                 "name": "Transcription",

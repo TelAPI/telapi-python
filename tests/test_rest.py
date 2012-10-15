@@ -100,6 +100,16 @@ class TestREST(unittest.TestCase):
 
         self.assertEquals(i + 1, len(sms_list))
 
+    def test_sms_filter(self):
+        sms_list = self.client.accounts[self.client.account_sid].sms_messages.filter(To='+15554449999')[:100]
+
+        for i, sms in enumerate(sms_list):
+            self.assertTrue(sms.body)
+            self.assertTrue(sms.from_number)
+            self.assertTrue(sms.to_number)
+
+        self.assertEquals(i + 1, len(sms_list))
+
     def test_sms_send(self):
         sms_list = self.client.accounts[self.client.account_sid].sms_messages
         from_number = to_number = self.test_number
