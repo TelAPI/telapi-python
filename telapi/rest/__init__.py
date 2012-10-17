@@ -226,6 +226,9 @@ class ListResource(Resource):
 
         return self
 
+    def __repr__(self):
+        self.fetch()
+        return str(self._resource_data)
 
 
 
@@ -349,6 +352,9 @@ class InstanceResource(Resource):
 
         return None
 
+    def __repr__(self):
+        self.fetch()
+        return str(self._resource_data)
 
 
 
