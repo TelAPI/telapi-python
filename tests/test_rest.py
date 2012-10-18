@@ -341,6 +341,20 @@ class TestREST(unittest.TestCase):
 
         self.assertEquals(len(cnam_list), 1)
 
+    def test_call_by_sid(self):
+        calls = self.client.accounts[self.client.account_sid].calls
+        sid = 'CA64649c44418c451b96d23ea8394f6ffa'
+
+        # Straight up get by sid
+        call = calls[sid]
+        self.assertTrue(call)
+
+        # Prefetched
+        for call in calls:
+            pass
+        call = calls[sid]
+        self.assertTrue(call)
+
 if __name__ == '__main__':
     unittest.main()
 

@@ -140,9 +140,9 @@ class ListResource(Resource):
         # Lookup by SID
         else:
             if self._populated:
-                for item in self._resource_data:
+                for item in self._resource_data[self._short_name]:
                     if item["sid"] == key:
-                        return _name_to_instance_class(self._name)(parent=self, fetched_data=nth_item)
+                        return _name_to_instance_class(self._name)(parent=self, fetched_data=item)
             else:
                 return _name_to_instance_class(self._name)(parent=self, sid=key)
 
