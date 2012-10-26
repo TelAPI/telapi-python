@@ -410,7 +410,7 @@ class Client(object):
                     error = json.loads(response.content)
                     raise exceptions.RequestError("Error code %s. %s. More info at %s" % (error["code"], error["message"], error["more_info"]), error_code=error["code"], http_code=response.status_code)
                 except ValueError:
-                    raise exceptions.RequestError("Errror requesting %s to '%s'. Status code: %s" % (method, url, response.status_code), http_code=response.status_code)
+                    raise exceptions.RequestError("Error requesting %s to '%s'. Status code: %s" % (method, url, response.status_code), http_code=response.status_code)
 
         # print
         # print response.content

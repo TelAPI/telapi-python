@@ -171,7 +171,7 @@
                 "name": "Play",
                 "url": "Play",
                 "attributes": [
-                    "sounds",
+                    "audio_url",
                     "legs",
                     "mix",
                     "length",
@@ -181,7 +181,7 @@
                     "calls"
                 ],
                 "create_params": {
-                    "sounds": "Sounds",
+                    "audio_url": "AudioUrl",
                     "legs": "Legs",
                     "mix": "Mix",
                     "length": "Length",
