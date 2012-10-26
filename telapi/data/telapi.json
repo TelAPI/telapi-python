@@ -18,6 +18,30 @@
                 "create_params": {},
                 "parent_resources": []
             },
+            "usages": {
+                "name": "Usage",
+                "url": "Usages",
+                "attributes": [
+                    "sid",
+                    "product",
+                    "day",
+                    "month",
+                    "year",
+                    "quantity",
+                    "averagecost",
+                    "totalcost",
+                    "uri"
+                ],
+                "parent_resources": [
+                    "accounts"
+                ],
+                "filter_params": [
+                    "Day",
+                    "Month",
+                    "Year",
+                    "Product"
+                ]
+            },
             "notifications": {
                 "name": "Notification",
                 "url": "Notifications",
