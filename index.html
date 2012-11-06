@@ -1,74 +1,1742 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Telapi-python : TelAPI telephony API library for Python" />
+    <title>TelAPI-Python Reference</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link href="stylesheets/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="javascripts/prettify.js"></script>
 
-    <title>Telapi-python</title>
   </head>
+  <body onload="prettyPrint()">
 
-  <body>
+<div class="topbar">
+<div class="container">
+<a href="http://www.telapi.com" class="brand">TelAPI</a>
+</div>
+</div>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/TelAPI/telapi-python">View on GitHub</a>
+<div class="container">
+<div class="hero-unit">
+<h1>TelAPI-Python Reference</h1>
+</div>
+</div>
 
-          <h1 id="project_title">Telapi-python</h1>
-          <h2 id="project_tagline">TelAPI telephony API library for Python</h2>
+    <div class="container">
+        <div class="row">
+        <div class="span-two-thirds">
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/TelAPI/telapi-python/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/TelAPI/telapi-python/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
+        <h1 id="inboundxml">InboundXML</h1>
+        
+        <hr><h1 id="rest-api">REST API</h1>
+
+        <P>Before using any of the TelAPI REST methods available, you must authenticate your account. Do so by including your REST API credentials in the following way:</p>
+
+<pre class="prettyprint lang-py">
+from telapi import rest
+ 
+account_sid = 'AC6ed337e6790d47289c3d2073d3c6d0e4'
+auth_token  = 'c6279c1dd08349e5829a8dfaf3642571'
+client      = rest.Client(account_sid, auth_token)
+account     = client.accounts[client.account_sid]
+</pre> 
+
+<p>Notice the code above also instantiates and assigns an account object. Every method used throughout this helper library will use this main account class.</p>
+
+        <hr><h2 id="accounts">Accounts</h2>
+
+        <h4 style="display:inline;">View Account</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/accounts/view/">Documentation</a><br>
+
+        <p>Once you've authenticated as shown above, print an account resource like so:</p>
+
+<pre class="prettyprint lang-py">
+print account
+</pre> 
+
+<p>Example print output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'status':u'active',
+   u'account_balance':u'27.913600',
+   u'subresource_uris':{
+      u'usages':u'/v1/Accounts/{AccountSid}/Usages.json',
+      u'fraud':u'/v1/Accounts/{AccountSid}/Fraud.json',
+      u'calls':u'/v1/Accounts/{AccountSid}/Calls.json',
+      u'conferences':u'/v1/Accounts/{AccountSid}/Conferences.json',
+      u'transcriptions':u'/v1/Accounts/{AccountSid}/Transcriptions.json',
+      u'incoming_phone_numbers':u'/v1/Accounts/{AccountSid}/IncomingPhoneNumbers.json',
+      u'sms_messages':u'/v1/Accounts/{AccountSid}/SMS/Messages.json',
+      u'transactions':u'/v1/Accounts/{AccountSid}/Transactions.json',
+      u'notifications':u'/v1/Accounts/{AccountSid}/Notifications.json',
+      u'recordings':u'/v1/Accounts/{AccountSid}/Recordings.json',
+      u'carrier':u'/v1/Accounts/{AccountSid}/Carrier.json',
+      u'available_phone_numbers':u'/v1/Accounts/{AccountSid}/AvailablePhoneNumbers.json',
+      u'cnam':u'/v1/Accounts/{AccountSid}/CNAM.json',
+      u'applications':u'/v1/Accounts/{AccountSid}/Applications.json'
+   },
+   u'date_updated':u'Thu,
+   4   Oct 2012 13:58:47   +0000',
+   u'friendly_name':u'foo@example.com',
+   u'uri':u'/v1/Accounts/{AccountSid}.json',
+   u'timezone':u'EST',
+   u'sid':u'{AccountSid}',
+   u'date_created':u'Wed,
+   14   Mar 2012 16:47:29   +0000',
+   u'type':u'Full'
+}
+</pre>
+
+<p>Simply use dot notation to access individual resource properties:</p>
+
+<pre class="prettyprint lang-py">
+print account.status
+>>> active
+print account.account_balance
+>>> 27.913600
+</pre> 
+
+
+        <h4 style="display:inline;">View Usage</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/accounts/view-usage/">Documentation</a><br>
+
+
+        <p>Specify the sid within square brackets when requesting a Usage Resource:</p>
+
+
+<pre class="prettyprint lang-py">
+usage = account.usages['{UsagesSid}']
+print usage                   
+</pre>
+
+      <p>Example print output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'product':u'Inbound Call',
+   u'total_cost':u'0.180000',
+   u'sid':u'{UsageSid}',
+   u'uri':u'/v1/Accounts/{AccountSid}/Usages/{UsageSid}.json',
+   u'month':u'10',
+   u'average_cost':u'0.01',
+   u'year':u'2012',
+   u'day':u'3',
+   u'quantity':u'17'
+}
+</pre>
+
+<p>Then simply use dot notation to access individual resource properties:</p>
+
+<pre class="prettyprint lang-py">
+print usage.year
+>>> 2012
+print usage.quantity
+>>> 17
+</pre> 
+
+        <h4 style="display:inline;">List Usages</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/accounts/list-usages/">Documentation</a><br>
+
+
+        <p>Print usages list resource filtering for usage only occurring in 2012:</p>
+
+
+<pre class="prettyprint lang-py">
+print account.usages.filter(Year='2012')                 
+</pre>
+
+      <p>Example print output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'first_page_uri':u'/v1/Accounts/{AccountSid}/Usages.json?Page=0&amp;PageSize=3',
+   u'usages':[
+      {
+         u'product':u'Inbound Call',
+         u'total_cost':u'0.020000',
+         u'sid':u'{UsageSid}',
+         u'uri':u'/v1/Accounts/{AccountSid}/Usages/{UsageSid}.json',
+         u'month':u'9',
+         u'average_cost':u'0.010000',
+         u'year':u'2012',
+         u'day':u'27',
+         u'quantity':u'2'
+      },
+      {
+         u'product':u'Recurring Inbound Channel',
+         u'total_cost':u'27.000000',
+         u'sid':u'{UsageSid}',
+         u'uri':u'/v1/Accounts/{AccountSid}/Usages/{UsageSid}.json',
+         u'month':u'10',
+         u'average_cost':u'27.000000',
+         u'year':u'2012',
+         u'day':u'1',
+         u'quantity':u'1'
+      },
+      {
+         u'product':u'Outbound Call (Spoofed)',
+         u'total_cost':u'0.058400',
+         u'sid':u'{UsageSid}',
+         u'uri':u'/v1/Accounts/{AccountSid}/Usages/{UsageSid}.json',
+         u'month':u'10',
+         u'average_cost':u'0.058400',
+         u'year':u'2012',
+         u'day':u'1',
+         u'quantity':u'1'
+      }
+   ],
+   u'end':2,
+   u'previous_page_uri':None,
+   u'uri':u'/v1/Accounts/{AccountSid}/Usages.json',
+   u'page_size':3,
+   u'start':0,
+   u'next_page_uri':u'/v1/Accounts/{AccountSid}/Usages.json?Page=1&amp;PageSize=3',
+   u'num_pages':9,
+   u'total':27,
+   u'last_page_uri':u'/v1/Accounts/{AccountSid}/Usages.json?Page=8&amp;PageSize=3',
+   u'page':0
+}
+</pre>
+
+<p>Iterate over list resources like so:</p>
+
+<pre class="prettyprint lang-py">
+for usage in account.usages.filter(Year='2012'):
+    print usage.month
+>>> 9
+>>> 10
+>>> 10
+</pre> 
+
+            <hr><h2 id="sms">SMS</h2>
+
+        <h4 style="display:inline;">View SMS Message</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/sms/view/">Documentation</a><br>
+
+        <p>Specify the sid within square brackets when requesting an SMS Resource:</p>
+
+<pre class="prettyprint lang-py">
+sms = account.sms_messages['{SmsMessageSid}']
+print sms
+</pre> 
+
+<p>Example print output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'body':u'Hello, this is an SMS.',
+   u'status':u'sent',
+   u'direction':u'outbound-call',
+   u'from':u'+17325551234',
+   u'date_updated':u'Mon,
+   15   Oct 2012 15:00:04   +0000',
+   u'price':u'0.070000',
+   u'uri':u'/v1/Accounts/{AccountSid}/SMS/Messages/{SmsMessageSid}.json',
+   u'account_sid':u'{AccountSid}',
+   u'to':u'+1015551337',
+   u'sid':u'{SmsMessageSid}',
+   u'date_sent':u'Mon,
+   15   Oct 2012 15:00:03   +0000',
+   u'date_created':u'Mon,
+   15   Oct 2012 14:00:00   +0000',
+   u'api_version':u'v1'
+}
+</pre>
+
+<p>Then simply use dot notation to access individual resource properties:</p>
+
+<pre class="prettyprint lang-py">
+print sms.from
+>>> 17325551234
+print sms.body
+>>> Hello, this is an SMS.
+</pre> 
+
+<h4 style="display:inline;">List SMS Messages</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/sms/list/">Documentation</a><br>
+
+        <p>Print SMS list resource filtering for a specific From number:</p>
+
+<pre class="prettyprint lang-py">
+sms_messages = account.sms_messages.filter(From='7325551234')
+print sms_messages
+</pre> 
+
+<p>Example print output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'first_page_uri':u'/v1/Accounts/{AccountSid}/SMS/Messages.json?Page=0&amp;PageSize=50',
+   u'end':1,
+   u'previous_page_uri':None,
+   u'sms_messages':[
+      {
+         u'body':u'Meet me at taco bell',
+         u'status':u'sent',
+         u'direction':u'outbound-api',
+         u'from':u'+7325551234',
+         u'date_updated':u'Tue,
+         16         Oct 2012 13:05:44         +0000',
+         u'price':u'0.070000',
+         u'uri':u'/v1/Accounts/{AccountSid}/SMS/Messages/{SmsMessageSid}.json',
+         u'account_sid':u'{AccountSid}',
+         u'to':u'+1015551337',
+         u'sid':u'{SmsMessageSid}',
+         u'date_sent':u'Tue,
+         16         Oct 2012 13:05:43         +0000',
+         u'date_created':u'Tue,
+         16         Oct 2012 13:05:43         +0000',
+         u'api_version':u'v1'
+      },
+      {
+         u'body':u'This is an SMS.',
+         u'status':u'sent',
+         u'direction':u'outbound-call',
+         u'from':u'+7325551234',
+         u'date_updated':u'Mon,
+         15         Oct 2012 15:00:04         +0000',
+         u'price':u'0.070000',
+         u'uri':u'/v1/Accounts/{AccountSid}/SMS/Messages/{SmsMessageSid}.json',
+         u'account_sid':u'{AccountSid}',
+         u'to':u'+1015551337',
+         u'sid':u'{SmsMessageSid}',
+         u'date_sent':u'Mon,
+         15         Oct 2012 15:00:03         +0000',
+         u'date_created':u'Mon,
+         15         Oct 2012 14:00:00         +0000',
+         u'api_version':u'v1'
+      },
+   ],
+   u'uri':u'/v1/Accounts/{AccountSid}/SMS/Messages.json',
+   u'page_size':50,
+   u'start':0,
+   u'next_page_uri':u'/v1/Accounts/{AccountSid}/SMS/Messages.json?Page=1&amp;PageSize=50',
+   u'num_pages':1,
+   u'total':2,
+   u'last_page_uri':u'/v1/Accounts/{AccountSid}/SMS/Messages.json?Page=5&amp;PageSize=50',
+   u'page':0
+}
+</pre>
+
+<p>Iterate over list resources like so:</p>
+
+<pre class="prettyprint lang-py">
+for sms in sms_messages:
+    print sms.status
+>>> sent
+>>> sent
+</pre> 
+
+<h4 style="display:inline;">Send SMS Message</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/sms/send/">Documentation</a><br>
+
+        <p>Use the create method along with a set of parameters to send an SMS message:</p>
+
+<pre class="prettyprint lang-py">
+sms_message = account.sms_messages.create(
+    from_number = '7325816932',
+    to_number   = '7328148921',
+    body = 'test'
+)
+
+print sms_message
+</pre> 
+
+<p>Example print output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'body':u'hello',
+   u'status':u'sent',
+   u'direction':u'outbound-call',
+   u'from':u'+1732551234',
+   u'date_updated':u'Mon,
+   15   Oct 2012 15:00:04   +0000',
+   u'price':u'0.070000',
+   u'uri':u'/v1/Accounts/{AccountSid}/SMS/Messages/{SmsMessageSid}.json',
+   u'account_sid':u'{AccountSid}',
+   u'to':u'+1015551234',
+   u'sid':u'{SmsMessageSid}',
+   u'date_sent':u'Mon,
+   15   Oct 2012 15:00:03   +0000',
+   u'date_created':u'Mon,
+   15   Oct 2012 14:00:00   +0000',
+   u'api_version':u'v1'
+}
+</pre>
+
+<hr><h2 id="calls">Calls</h2>
+
+        <h4 style="display:inline;">View Call</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/calls/view/">Documentation</a><br>
+
+        <p>Specify the sid within square brackets when requesting a call Resource:</p>
+
+<pre class="prettyprint lang-py">
+call = account.calls['{CallSid}']
+print call
+</pre> 
+
+<p>Example print output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'status':u'completed',
+   u'direction':u'inbound',
+   u'from':u'+7325551234',
+   u'privacy_hide_number':u'False',
+   u'uri':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}.json',
+   u'date_updated':u'Tue,
+   16   Oct 2012 19:39:37   +0000',
+   u'answered_by':u'None',
+   u'start_time':u'Tue,
+   16   Oct 2012 19:39:33   +0000',
+   u'phone_number_sid':u'{PhoneNumberSid}',
+   u'parent_call_sid':'',
+   u'sip_privacy':'',
+   u'account_sid':u'{AccountSid}',
+   u'to':u'+11235556060',
+   u'forwarded_from':'',
+   u'end_time':u'Tue,
+   16   Oct 2012 19:39:37   +0000',
+   u'sid':u'{CallSid}',
+   u'duration':u'4',
+   u'date_created':u'Tue,
+   16   Oct 2012 19:39:33   +0000',
+   u'subresource_uris':{
+      u'notifications':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}/Notifications.json',
+      u'recordings':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}/Recordings.json'
+   },
+   u'price':u'0.010000',
+   u'api_version':u'v1'
+}
+</pre>
+
+<p>Then simply use dot notation to access individual resource properties:</p>
+
+<pre class="prettyprint lang-py">
+print call.from
+>>> +7325551234
+print sms.direction
+>>> inbound
+</pre> 
+
+
+        <h4 style="display:inline;">List Calls</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/calls/list/">Documentation</a><br>
+
+        <p>Print call list resource filtering for a specific To number:</p>
+
+<pre class="prettyprint lang-py">
+calls = account.calls.filter(To='7325551234')
+print calls
+</pre> 
+
+<p>Example print output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'first_page_uri':u'/v1/Accounts/{AccountSid}/Calls.json?Page=0&amp;PageSize=50',
+   u'end':49,
+   u'calls':[
+      {
+         u'status':u'completed',
+         u'direction':u'outbound-dial',
+         u'from':u'+15551234567',
+         u'privacy_hide_number':u'False',
+         u'uri':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}.json',
+         u'date_updated':u'Tue,
+         16         Oct 2012 19:33:37         +0000',
+         u'answered_by':u'None',
+         u'start_time':u'Tue,
+         16         Oct 2012 19:33:36         +0000',
+         u'phone_number_sid':u'{PhoneNumberSid}',
+         u'parent_call_sid':'',
+         u'sip_privacy':u'None',
+         u'account_sid':u'{AccountSid}',
+         u'to':u'+7325551234',
+         u'forwarded_from':'',
+         u'end_time':u'Tue,
+         16         Oct 2012 19:33:36         +0000',
+         u'sid':u'{CallSid}',
+         u'duration':u'0',
+         u'date_created':u'Tue,
+         16         Oct 2012 19:33:18         +0000',
+         u'subresource_uris':{
+            u'notifications':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}/Notifications.json',
+            u'recordings':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}/Recordings.json'
+         },
+         u'price':u'0.056000',
+         u'api_version':u'v1'
+      },
+      {
+         u'status':u'completed',
+         u'direction':u'outbound-dial',
+         u'from':u'+15551234567',
+         u'privacy_hide_number':u'False',
+         u'uri':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}.json',
+         u'date_updated':u'Tue,
+         16         Oct 2012 19:33:35         +0000',
+         u'answered_by':u'None',
+         u'start_time':u'Tue,
+         16         Oct 2012 19:33:19         +0000',
+         u'phone_number_sid':u'{PhoneNumberSid}',
+         u'parent_call_sid':'',
+         u'sip_privacy':u'None',
+         u'account_sid':u'{AccountSid}',
+         u'to':u'+7325551234',
+         u'forwarded_from':'',
+         u'end_time':u'Tue,
+         16         Oct 2012 19:33:35         +0000',
+         u'sid':u'{CallSid}',
+         u'duration':u'16',
+         u'date_created':u'Tue,
+         16         Oct 2012 19:33:07         +0000',
+         u'subresource_uris':{
+            u'notifications':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}/Notifications.json',
+            u'recordings':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}/Recordings.json'
+         },
+         u'price':u'0.056000',
+         u'api_version':u'v1'
+      },
+   ],
+   u'previous_page_uri':None,
+   u'uri':u'/v1/Accounts/{AccountSid}/Calls.json',
+   u'page_size':50,
+   u'start':0,
+   u'next_page_uri':u'/v1/Accounts/{AccountSid}/Calls.json?Page=1&amp;PageSize=50',
+   u'num_pages':7,
+   u'total':354,
+   u'last_page_uri':u'/v1/Accounts/{AccountSid}/Calls.json?Page=6&amp;PageSize=50',
+   u'page':0
+}
+</pre>
+
+<p>Iterate over list resources like so:</p>
+
+<pre class="prettyprint lang-py">
+for call in calls:
+    print call.status
+>>> completed
+>>> completed
+</pre> 
+
+
+<h4 style="display:inline;">Make Call</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/calls/make/">Documentation</a><br>
+
+        <p>Use the create method along with a set of parameters to make a call:</p>
+
+<pre class="prettyprint lang-py">
+call  = account.calls.create(
+    from_number = '7325816932',
+    to_number = '7328148921',
+    url = 'http://liveoutput.com/createnewcall'
+)
+
+print call
+</pre> 
+
+<p>Example print output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'status':u'queued',
+   u'direction':u'outbound-api',
+   u'from':u'+17325551234',
+   u'privacy_hide_number':u'False',
+   u'uri':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}.json',
+   u'date_updated':u'Wed,
+   17   Oct 2012 16:15:59   +0000',
+   u'answered_by':u'None',
+   u'start_time':u'Wed,
+   17   Oct 2012 16:15:59   +0000',
+   u'phone_number_sid':'',
+   u'parent_call_sid':'',
+   u'sip_privacy':u'None',
+   u'account_sid':u'{AccountSid}',
+   u'to':u'+17321235678',
+   u'forwarded_from':'',
+   u'end_time':'',
+   u'sid':u'{CallSid}',
+   u'duration':u'0',
+   u'date_created':u'Wed,
+   17   Oct 2012 16:15:59   +0000',
+   u'subresource_uris':{
+      u'notifications':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}/Notifications.json',
+      u'recordings':u'/v1/Accounts/{AccountSid}/Calls/{CallSid}/Recordings.json'
+   },
+   u'price':u'0.000000',
+   u'api_version':u'v1'
+}
+</pre>
+
+<h4 style="display:inline;">Hangup Call</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/calls/hangup/">Documentation</a><br>
+
+        <p>To Hangup a call, simply fetch it and change the status:</p>
+
+<pre class="prettyprint lang-py">
+call  = account.calls['{CallSid}']
+ 
+call.status = 'completed'
+ 
+call.save()
+ 
+print "Call Status: %s" % call.status
+</pre>
+
+<h4 style="display:inline;">Send Digits to Call</h4>
+ <a href="http://www.telapi.com/docs/api/rest/calls/send-digits/">Documentation</a><br>
+
+         <p>To send digits to a call, the play_dtfm property is provide:</p>
+
+<pre class="prettyprint lang-py">
+call  = account.calls['{CallSid}']
+ 
+call.play_dtmf = '1234'
+ 
+call.save()
+</pre>
+
+         <p>To specify a particular leg (caller or answerer), use the play_dtmf_leg property:</p>
+
+<pre class="prettyprint lang-py">
+call.play_dtmf_leg = 'aleg'
+</pre>
+
+<h4 style="display:inline;">Play Audio to Call</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/calls/play-audio/">Documentation</a><br>
+
+        <p>To play audio to a call, fetch it and then use the play methods provided:</p>
+
+<pre class="prettyprint lang-py">
+call  = account.calls['{CallSid}']
+
+play = call.plays.new()
+
+play.audio_url = '{audio-file}'
+
+play.save()
+</pre>
+
+<h4 style="display:inline;">Record Call</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/calls/record/">Documentation</a><br>
+
+        <p>To record a call, fetch it and then use the recording methods provided:</p>
+
+<pre class="prettyprint lang-py">
+call  = account.calls['{CallSid}']
+
+r = call.recordings.new()
+
+r.record = 'true'
+
+r.callback_url = 'http://www.foo.com'
+
+r.save()
+</pre>
+
+
+<hr><h2 id="conferences">Conferences</h2>
+
+<h4 style="display:inline;">View Conference</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/conferences/view/">Documentation</a><br>
+
+        <p>Request and print a conference resource:</p>
+
+<pre class="prettyprint lang-py">
+conference = account.conferences['{ConferenceSid}']
+
+print conference
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+{
+         u'status':u'completed',
+         u'subresource_uris':{
+            u'participants':u'/v1/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants.json'
+         },
+         u'participant_count':u'0',
+         u'date_updated':u'Fri,
+         26         Oct 2012 16:21:37         +0000',
+         u'friendly_name':u'pycon',
+         u'uri':u'/v1/Accounts/{AccountSid}/Conferences/{ConferenceSid}.json',
+         u'account_sid':u'{AccountSid}',
+         u'run_time':u'0',
+         u'sid':u'{ConferenceSid}',
+         u'date_created':u'Fri,
+         26         Oct 2012 16:18:02         +0000'
+      }
+)
+</pre>
+
+<h4 style="display:inline;">List Conferences</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/conferences/list/">Documentation</a><br>
+
+        <p>Request and print a conferences list resource:</p>
+
+<pre class="prettyprint lang-py">
+conferences = account.conferences
+
+print conferences
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'first_page_uri':u'/v1/Accounts/{AccountSid}/Conferences.json?Page=0&amp;PageSize=50',
+   u'end':20,
+   u'conferences':[
+      {
+         u'status':u'completed',
+         u'subresource_uris':{
+            u'participants':u'/v1/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants.json'
+         },
+         u'participant_count':u'0',
+         u'date_updated':u'Fri,
+         26         Oct 2012 16:21:37         +0000',
+         u'friendly_name':u'pycon',
+         u'uri':u'/v1/Accounts/{AccountSid}/Conferences/{ConferenceSid}.json',
+         u'account_sid':u'{AccountSid}',
+         u'run_time':u'0',
+         u'sid':u'{ConferenceSid}',
+         u'date_created':u'Fri,
+         26         Oct 2012 16:18:02         +0000'
+      },
+      {
+         u'status':u'completed',
+         u'subresource_uris':{
+            u'participants':u'/v1/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants.json'
+         },
+         u'participant_count':u'0',
+         u'date_updated':u'Mon,
+         8         Oct 2012 19:30:29         +0000',
+         u'friendly_name':u'example-conference',
+         u'uri':u'/v1/Accounts/{AccountSid}/Conferences/{ConferenceSid}.json',
+         u'account_sid':u'{AccountSid}',
+         u'run_time':u'0',
+         u'sid':u'{ConferenceSid}',
+         u'date_created':u'Mon,
+         8         Oct 2012 19:28:59         +0000'
+      }
+   ],
+   u'previous_page_uri':None,
+   u'uri':u'/v1/Accounts/{AccountSid}/Conferences.json',
+   u'page_size':50,
+   u'start':0,
+   u'next_page_uri':u'/v1/Accounts/{AccountSid}/Conferences.json?Page=-1&amp;PageSize=50',
+   u'num_pages':0,
+   u'total':20,
+   u'last_page_uri':u'/v1/Accounts/{AccountSid}/Conferences.json?Page=-1&amp;PageSize=50',
+   u'page':0
+}
+</pre>
+
+<h4 style="display:inline;">View Participant</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/conferences/view-participant/">Documentation</a><br>
+
+        <p>To view a participant, first fetch the conference it is in, and then fetch the participant by call sid:</p>
+
+<pre class="prettyprint lang-py">
+conference = account.conferences['{ConferenceSid}']
+
+participant = conference.participants['{ParticipantCallSid}']
+
+print participant
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+....
+</pre>
+
+<h4 style="display:inline;">List Participants</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/conferences/list-participants/">Documentation</a><br>
+
+        <p>Print a participant list, filtering to return only muted members:</p>
+
+<pre class="prettyprint lang-py">
+conference = account.conferences['{ConferenceSid}']
+
+participants = conference.participants.filter(Muted="true")
+
+print participants
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+....
+</pre>
+
+<h4 style="display:inline;">Deaf or Mute Participant</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/conferences/deaf-or-mute/">Documentation</a><br>
+
+        <p>Use participant dot methods to deaf or mute a conference participant:</p>
+
+<pre class="prettyprint lang-py">
+conference = account.conferences['{ConferenceSid}']
+
+participant = conference.participants['{ParticipantCallSid}']
+
+participant.muted = "true"
+
+participant.deaf = "false"
+
+participant.save()
+</pre>
+
+<h4 style="display:inline;">Hangup Participant</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/conferences/hangup-participant/">Documentation</a><br>
+
+        <p>Use the delete method to hangup a conference participant:</p>
+
+<pre class="prettyprint lang-py">
+conference = account.conferences['{ConferenceSid}']
+
+participant = conference.participants['{ParticipantCallSid}']
+
+participant.delete()
+</pre>
+
+<h4 style="display:inline;">Play Audio to Participant</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/conferences/play-audio/">Documentation</a><br>
+
+        <p>Use the update method to play audio to a participant:</p>
+
+<pre class="prettyprint lang-py">
+conference = account.conferences['{ConferenceSid}']
+
+participant = conference.participants['{ParticipantCallSid}']
+
+play = participant.plays.new()
+
+play.audio_url = "{some_audio_url}"
+
+play.save()
+</pre>
+
+<hr><h2 id="applications">Applications</h2>   
+
+<h4 style="display:inline;">View Application</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/applications/view/">Documentation</a><br>
+
+        <p>Request and print an application resource:</p>
+
+<pre class="prettyprint lang-py">
+application = account.applications['{ApplicationSid}']
+
+print application
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'date_updated':u'Tue,
+   31   Jul 2012 13:34:16   +0000',
+   u'voice_url':'',
+   u'sms_status_callback_method':u'POST',
+   u'voice_fallback_method':u'POST',
+   u'sms_status_callback':'',
+   u'sid':u'{ApplicationSid}',
+   u'heartbeat_method':u'POST',
+   u'api_version':u'v1',
+   u'voice_fallback_url':'',
+   u'hangup_callback':'',
+   u'hangup_callback_method':u'POST',
+   u'heartbeat_url':'',
+   u'sms_url':'',
+   u'voice_method':u'POST',
+   u'voice_caller_id_lookup':u'False',
+   u'friendly_name':u'asdfasf',
+   u'uri':u'/v1/Accounts/{AccountSid}/Applications/{ApplicationSid}.json',
+   u'sms_fallback_url':'',
+   u'account_sid':u'{AccountSid}',
+   u'sms_method':u'POST',
+   u'sms_fallback_method':u'POST',
+   u'date_created':u'Tue,
+   31   Jul 2012 13:34:16   +0000'
+}
+</pre>
+
+<h4 style="display:inline;">List Application</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/applications/list/">Documentation</a><br>
+
+        <p>Request and print an application list resource with an optional pagesize parameter:</p>
+
+<pre class="prettyprint lang-py">
+applications = account.applications
+
+print applications
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'first_page_uri':u'/v1/Accounts/{AccountSid}/Applications.json?Page=0&amp;PageSize=50',
+   u'end':3,
+   u'previous_page_uri':None,
+   u'uri':u'/v1/Accounts/{AccountSid}/Applications.json',
+   u'page_size':50,
+   u'start':0,
+   u'applications':[
+      {
+         u'date_updated':u'Tue,
+         31         Jul 2012 13:39:21         +0000',
+         u'voice_url':         u'http://www.test.com',
+         u'sms_status_callback_method':u'POST',
+         u'voice_fallback_method':u'POST',
+         u'sms_status_callback':'',
+         u'sid':u'{ApplicationSid}',
+         u'heartbeat_method':u'POST',
+         u'api_version':u'v1',
+         u'voice_fallback_url':'',
+         u'hangup_callback':'',
+         u'hangup_callback_method':u'POST',
+         u'heartbeat_url':'',
+         u'sms_url':'',
+         u'voice_method':u'POST',
+         u'voice_caller_id_lookup':u'False',
+         u'friendly_name':u'ExampleApplication',
+         u'uri':u'/v1/Accounts/{AccountSid}/Applications/{ApplicationSid}.json',
+         u'sms_fallback_url':'',
+         u'account_sid':u'{AccountSid}',
+         u'sms_method':u'POST',
+         u'sms_fallback_method':u'POST',
+         u'date_created':u'Mon,
+         30         Jul 2012 16:53:23         +0000'
+      },
+      {
+         u'date_updated':u'Tue,
+         31         Jul 2012 13:34:16         +0000',
+         u'voice_url':'',
+         u'sms_status_callback_method':u'POST',
+         u'voice_fallback_method':u'POST',
+         u'sms_status_callback':'',
+         u'sid':u'ApplicationSid',
+         u'heartbeat_method':u'POST',
+         u'api_version':u'v1',
+         u'voice_fallback_url':'',
+         u'hangup_callback':'',
+         u'hangup_callback_method':u'POST',
+         u'heartbeat_url':'',
+         u'sms_url':'',
+         u'voice_method':u'POST',
+         u'voice_caller_id_lookup':u'False',
+         u'friendly_name':u'asdfasf',
+         u'uri':u'/v1/Accounts/{AccountSid}/Applications/ApplicationSid.json',
+         u'sms_fallback_url':'',
+         u'account_sid':u'{AccountSid}',
+         u'sms_method':u'POST',
+         u'sms_fallback_method':u'POST',
+         u'date_created':u'Tue,
+         31         Jul 2012 13:34:16         +0000'
+      },
+   ],
+   u'next_page_uri':u'/v1/Accounts/{AccountSid}/Applications.json?Page=-1&amp;PageSize=50',
+   u'num_pages':0,
+   u'total':3,
+   u'last_page_uri':u'/v1/Accounts/{AccountSid}/Applications.json?Page=-1&amp;PageSize=50',
+   u'page':0
+}
+</pre>
+
+<h4 style="display:inline;">Create Application</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/applications/create/">Documentation</a><br>
+
+        <p>Use the create method to make an application:</p>
+
+<pre class="prettyprint lang-py">
+application = account.applications.create(
+    friendly_name = "Welcome Application",
+    voice_url     = "http://telapi.com/ivr/welcome/call",
+    sms_url       = "http://telapi.com/ivr/welcome/sms"
+)
+</pre> 
+
+<h4 style="display:inline;">Update Application</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/applications/update/">Documentation</a><br>
+
+        <p>Fetch an application and then access its properties with dot notation to update:</p>
+
+<pre class="prettyprint lang-py">
+application = account.applications['{ApplicationSid}']
+
+application.friendly_name = 'new_friendly_name'
+
+application.save()
+</pre>
+
+<h4 style="display:inline;">Delete Application</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/applications/delete/">Documentation</a><br>
+
+        <p>Use the delete method to delete an application:</p>
+
+<pre class="prettyprint lang-py">
+incoming_number = account.incoming_phone_number[{IncomingNumberSid}]
+
+print incoming_number
+</pre>
+
+<hr><h2 id="ipn">Incoming Phone Numbers</h2>   
+
+<h4 style="display:inline;">View Incoming Phone Number</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/incoming-phone-numbers/view/">Documentation</a><br>
+
+        <p>Request and print an incoming phone number resource:</p>
+
+<pre class="prettyprint lang-py">
+$incoming_number = $telapi->get(array( 
+    'incoming_phone_numbers', '{IncomingPhoneNumberSid}' 
+));
+ 
+print_r($incoming_number->getResponse());
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+      {
+         u'date_updated':u'Thu,
+         1         Nov 2012 05:00:10         +0000',
+         u'voice_url':         u' https://www.telapi.com/data/inboundxml ',
+         u'sms_application_sid':'',
+         u'voice_fallback_method':u'POST',
+         u'voice_application_sid':'',
+         u'capabilities':{
+            u'voice':u'True',
+            u'sms':u'True'
+         },
+         u'sid':u'{IncomingNumberSid}',
+         u'heartbeat_method':u'POST',
+         u'type':u'local',
+         u'api_version':u'v1',
+         u'voice_fallback_url':'',
+         u'phone_number':u'+1235551234',
+         u'hangup_callback':'',
+         u'hangup_callback_method':u'POST',
+         u'heartbeat_url':'',
+         u'sms_url':         u' http://telapi.com/ivr/welcome/sms ',
+         u'voice_method':u'POST',
+         u'voice_caller_id_lookup':u'false',
+         u'friendly_name':u'(571) 490-8072',
+         u'uri':u'/v1/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingNumberSid}.json',
+         u'sms_fallback_url':'',
+         u'account_sid':u'{AccountSid}',
+         u'sms_method':u'POST',
+         u'sms_fallback_method':u'POST',
+         u'date_created':u'Thu,
+         22         Mar 2012 00:00:00         +0000'
+      }
+</pre>
+
+<h4 style="display:inline;">List Incoming Phone Numbers</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/incoming-phone-numbers/list/">Documentation</a><br>
+
+        <p>Request and print an incoming phone number list resource:</p>
+
+<pre class="prettyprint lang-py">
+incoming_numbers = account.incoming_phone_numbers
+
+print incoming_numbers
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'first_page_uri':u'/v1/Accounts/{AccountSid}/IncomingPhoneNumbers?Page=0&amp;PageSize=50',
+   u'end':2,
+   u'previous_page_uri':None,
+   u'incoming_phone_numbers':[
+      {
+         u'date_updated':u'Mon,
+         5         Nov 2012 14:39:07         +0000',
+         u'voice_url':         u' https://www.telapi.com/data/inboundxml ',
+         u'sms_application_sid':'',
+         u'voice_fallback_method':u'POST',
+         u'voice_application_sid':'',
+         u'capabilities':{
+            u'voice':u'True',
+            u'sms':u'True'
+         },
+         u'sid':u'{IncomingNumberSid}',
+         u'heartbeat_method':u'POST',
+         u'type':u'local',
+         u'api_version':u'v1',
+         u'voice_fallback_url':'',
+         u'phone_number':u'+12167441332',
+         u'hangup_callback':'',
+         u'hangup_callback_method':u'POST',
+         u'heartbeat_url':'',
+         u'sms_url':         u' https://dl.dropbox.com/u/71296878/test.xml ',
+         u'voice_method':u'POST',
+         u'voice_caller_id_lookup':u'false',
+         u'friendly_name':u'FriendlyName',
+         u'uri':u'/v1/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingNumberSid}.json',
+         u'sms_fallback_url':'',
+         u'account_sid':u'{AccountSid}',
+         u'sms_method':u'POST',
+         u'sms_fallback_method':u'POST',
+         u'date_created':u'Thu,
+         22         Mar 2012 00:00:00         +0000'
+      },
+      {
+         u'date_updated':u'Thu,
+         1         Nov 2012 05:00:10         +0000',
+         u'voice_url':         u' https://www.telapi.com/data/inboundxml ',
+         u'sms_application_sid':'',
+         u'voice_fallback_method':u'POST',
+         u'voice_application_sid':'',
+         u'capabilities':{
+            u'voice':u'True',
+            u'sms':u'True'
+         },
+         u'sid':u'{IncomingNumberSid}',
+         u'heartbeat_method':u'POST',
+         u'type':u'local',
+         u'api_version':u'v1',
+         u'voice_fallback_url':'',
+         u'phone_number':u'+1235551234',
+         u'hangup_callback':'',
+         u'hangup_callback_method':u'POST',
+         u'heartbeat_url':'',
+         u'sms_url':         u' http://telapi.com/ivr/welcome/sms ',
+         u'voice_method':u'POST',
+         u'voice_caller_id_lookup':u'false',
+         u'friendly_name':u'(571) 490-8072',
+         u'uri':u'/v1/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingNumberSid}.json',
+         u'sms_fallback_url':'',
+         u'account_sid':u'{AccountSid}',
+         u'sms_method':u'POST',
+         u'sms_fallback_method':u'POST',
+         u'date_created':u'Thu,
+         22         Mar 2012 00:00:00         +0000'
+      }
+   ],
+   u'uri':u'/v1/Accounts/{AccountSid}/IncomingPhoneNumbers.json',
+   u'page_size':50,
+   u'start':0,
+   u'next_page_uri':u'/v1/Accounts/{AccountSid}/IncomingPhoneNumbers.json?Page=-1&amp;PageSize=50',
+   u'num_pages':0,
+   u'total':4,
+   u'last_page_uri':u'/v1/Accounts/{AccountSid}/IncomingPhoneNumbers.json?Page=-1&amp;PageSize=50',
+   u'page':0
+}
+</pre>
+
+<h4 style="display:inline;">Add Incoming Phone Number</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/incoming-phone-numbers/add-or-delete/">Documentation</a><br>
+
+        <p>Use the create method to add incoming phone numbers:</p>
+
+<pre class="prettyprint lang-py">
+incoming_number = account.incoming_phone_numbers.create(
+    phone_number = '{ E.164 Format }'
+)
+</pre>
+
+<h4 style="display:inline;">Delete Incoming Phone Number</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/incoming-phone-numbers/add-or-delete/">Documentation</a><br>
+
+        <p>Use the delete method to delete incoming phone numbers:</p>
+
+<pre class="prettyprint lang-py">
+incoming_number = account.incoming_phone_numbers['{IncomingNumberSid}']
+ 
+incoming_number.delete()
+</pre>
+
+<h4 style="display:inline;">Update Incoming Phone Number</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/incoming-phone-numbers/update/">Documentation</a><br>
+
+        <p>Use the update method to update incoming phone numbers:</p>
+
+<pre class="prettyprint lang-py">
+incoming_number = account.incoming_phone_numbers['{IncomingNumberSid}']
+ 
+incoming_number.sms_url = 'http://telapi.com/ivr/welcome/sms'
+ 
+incoming_number.save()
+</pre>
+
+<hr><h2 id="available">Available Phone Numbers</h2>   
+
+<h4 style="display:inline;">List Available Phone Numbers</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/available-phone-numbers/list/">Documentation</a><br>
+
+        <p>Request and print an available phone number list resource:</p>
+
+<pre class="prettyprint lang-py">
+...
+</pre> 
+
+<p>print example output:</p>
+
+<pre>
+...
+</pre>
+
+<hr><h2 id="recordings">Recordings</h2>   
+
+<h4 style="display:inline;">View Recording</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/recordings/view/">Documentation</a><br>
+
+        <p>Request and print a recording resource:</p>
+
+<pre class="prettyprint lang-py">
+recording = account.recordings['{RecordingSid}']
+ 
+print recording
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'date_updated':u'Wed,
+   31         Oct 2012 15:16:49         +0000',
+   u'uri':u'/v1/Accounts/{AccountSid}/Recordings/{RecordingSid}.json',
+   u'account_sid':u'{AccountSid}',
+   u'call_sid':u'CA2705ed0e268a4f1aa5f05916721ebe86',
+   u'sid':u'{RecordingSid}',
+   u'duration':u'86399',
+   u'date_created':u'Wed,
+   31         Oct 2012 15:15:16         +0000',
+   u'recording_url':         u'http://recordings.telapi.com/{RecordingBucketSid}/{RecordingSid}.mp3',
+   u'api_version':u'v1'
+}
+</pre>
+
+<h4 style="display:inline;">List Recording</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/recordings/list/">Documentation</a><br>
+
+        <p>Request and print a recording list resource:</p>
+
+<pre class="prettyprint lang-py">
+recordings = account.recordings
+ 
+print recordings
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'first_page_uri':u'/v1/Accounts/{AccountSid}/Recordings.json?Page=0&amp;PageSize=50',
+   u'end':2,
+   u'previous_page_uri':None,
+   u'uri':u'/v1/Accounts/{AccountSid}/Recordings.json',
+   u'page_size':5,
+   u'start':0,
+   u'recordings':[
+      {
+         u'date_updated':u'Wed,
+         31         Oct 2012 15:16:49         +0000',
+         u'uri':u'/v1/Accounts/{AccountSid}/Recordings/{RecordingSid}.json',
+         u'account_sid':u'{AccountSid}',
+         u'call_sid':u'CA2705ed0e268a4f1aa5f05916721ebe86',
+         u'sid':u'{RecordingSid}',
+         u'duration':u'86399',
+         u'date_created':u'Wed,
+         31         Oct 2012 15:15:16         +0000',
+         u'recording_url':         u'http://recordings.telapi.com/{RecordingBucketSid}/{RecordingSid}.mp3',
+         u'api_version':u'v1'
+      },
+      {
+         u'date_updated':u'Wed,
+         31         Oct 2012 15:10:51         +0000',
+         u'uri':u'/v1/Accounts/{AccountSid}/Recordings/{RecordingSid}.json',
+         u'account_sid':u'{AccountSid}',
+         u'call_sid':u'CA7db42cd2bb8743849ea85d122ec15175',
+         u'sid':u'{RecordingSid}',
+         u'duration':u'86399',
+         u'date_created':u'Wed,
+         31         Oct 2012 15:10:10         +0000',
+         u'recording_url':         u'http://recordings.telapi.com/{RecordingBucketSid}/{RecordingSid}.mp3',
+         u'api_version':u'v1'
+      }
+   ],
+   u'next_page_uri':None,
+   u'num_pages':1,
+   u'total':83,
+   u'last_page_uri':u'/v1/Accounts/{AccountSid}/Recordings.json?Page=0&amp;PageSize=50',
+   u'page':0
+}
+</pre>
+
+<hr><h2 id="notifications">Notifications</h2>   
+
+<h4 style="display:inline;">View Notification</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/notifications/view/">Documentation</a><br>
+
+        <p>Request and print a notification resource:</p>
+
+<pre class="prettyprint lang-py">
+notification  = account.notifications['{NotificaitonSid}']
+
+print notification
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'log':u'2',
+   u'response_headers':'',
+   u'request_method':u'POST',
+   u'date_updated':u'Mon,
+   5         Nov 2012 20:12:11         +0000',
+   u'message_text':u'phone_number=%2B12355512346&amp;ErrorCode=30003&amp;Msg=Phone+number+purchased&amp;LogLevel=%282%2C+%27INFO%27%29',
+   u'request_variables':u'PhoneNumber=%2B1235551234',
+   u'uri':u'/v1/Accounts/{AccountSid}/Notifications/{NotificationSid}.json',
+   u'account_sid':u'{AccountSid}',
+   u'message_date':u'Mon,
+   5         Nov 2012 20:12:11         +0000',
+   u'response_body':'',
+   u'call_sid':'',
+   u'sid':u'{NotificationSid}',
+   u'date_created':u'Mon,
+   5         Nov 2012 20:12:11         +0000',
+   u'request_url':         u'https://api.telapi.com/2011-07-01/Accounts/{AccountSid}/IncomingPhoneNumbers.json',
+   u'error_code':30003,
+   u'api_version':u'v1',
+   u'more_info':         u'http://telapi.com/docs/api/rest/overview/errors/30003'
+}
+</pre>
+
+<h4 style="display:inline;">List Notifications</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/notifications/list/">Documentation</a><br>
+
+        <p>Request and print a notification list resource with optional parameter specifying a pagesize of 2:</p>
+
+<pre class="prettyprint lang-py">
+notifications  = account.notifications
+
+print notifications
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py" class="prettyprint lang-py">
+{
+   u'first_page_uri':u'/v1/Accounts/{AccountSid}/Notifications.json?Page=0&amp;PageSize=50',
+   u'end':2,
+   u'previous_page_uri':u'null',
+   u'uri':u'/v1/Accounts/{AccountSid}/Notifications.json',
+   u'page_size':52,
+   u'start':0,
+   u'next_page_uri':u'/v1/Accounts/{AccountSid}/Notifications.json?Page=1&amp;PageSize=50',
+   u'num_pages':1,
+   u'total':2,
+   u'last_page_uri':u'/v1/Accounts/{AccountSid}/Notifications.json?Page=12&amp;PageSize=50',
+   u'page':0,
+   u'notifications':[
+      {
+         u'log':u'2',
+         u'response_headers':'',
+         u'request_method':u'POST',
+         u'date_updated':u'Mon,
+         5         Nov 2012 20:12:11         +0000',
+         u'message_text':u'phone_number=%2B12355512346&amp;ErrorCode=30003&amp;Msg=Phone+number+purchased&amp;LogLevel=%282%2C+%27INFO%27%29',
+         u'request_variables':u'PhoneNumber=%2B1235551234',
+         u'uri':u'/v1/Accounts/{AccountSid}/Notifications/{NotificationSid}.json',
+         u'account_sid':u'{AccountSid}',
+         u'message_date':u'Mon,
+         5         Nov 2012 20:12:11         +0000',
+         u'response_body':'',
+         u'call_sid':'',
+         u'sid':u'{NotificationSid}',
+         u'date_created':u'Mon,
+         5         Nov 2012 20:12:11         +0000',
+         u'request_url':         u'https://api.telapi.com/2011-07-01/Accounts/{AccountSid}/IncomingPhoneNumbers.json',
+         u'error_code':30003,
+         u'api_version':u'v1',
+         u'more_info':         u'http://telapi.com/docs/api/rest/overview/errors/30003'
+      },
+      {
+         u'log':u'0',
+         u'response_headers':'',
+         u'request_method':u'POST',
+         u'date_updated':u'Mon,
+         5         Nov 2012 20:04:00         +0000',
+         u'message_text':u'ErrorCode=21401&amp;Msg=Invalid+Phone+Number&amp;LogLevel=%280%2C+%27ERROR%27%29',
+         u'request_variables':u'AreaCode=732',
+         u'uri':u'/v1/Accounts/{AccountSid}/Notifications/{notificationSid}.json',
+         u'account_sid':u'{AccountSid}',
+         u'message_date':u'Mon,
+         5         Nov 2012 20:04:00         +0000',
+         u'response_body':'',
+         u'call_sid':'',
+         u'sid':u'{notificationSid}',
+         u'date_created':u'Mon,
+         5         Nov 2012 20:04:00         +0000',
+         u'request_url':         u'https://api.telapi.com/v1/Accounts/{AccountSid}/IncomingPhoneNumbers',
+         u'error_code':21401,
+         u'api_version':u'v1',
+         u'more_info':         u'http://telapi.com/docs/api/rest/overview/errors/21401'
+      },
+   ]
+}
+</pre>
+
+<hr><h2 id="transcriptions">Transcriptions</h2>   
+
+<h4 style="display:inline;">View Transcriptions</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/transcriptions/view/">Documentation</a><br>
+
+        <p>Request and print a transcription resource:</p>
+
+<pre class="prettyprint lang-py">
+transcription  = account.transcriptions['{TranscriptionSid}']
+ 
+print transcription
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'status':u'completed',
+   u'date_updated':u'Mon,
+   22         Oct 2012 18:22:14         +0000',
+   u'transcription_text':u"Hello, this text is transcribed audio.",
+   u'price':u'0.050000',
+   u'uri':u'/v1/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.json',
+   u'transcribe_callback':         u'',
+   u'account_sid':u'{AccountSid}',
+   u'audio_url':         u'http://www.foo.com/file.mp3',
+   u'callback_method':u'POST',
+   u'sid':u'{TranscriptionSid}',
+   u'duration':u'2',
+   u'date_created':u'Mon,
+   22         Oct 2012 18:20:27         +0000',
+   u'type':u'auto',
+   u'api_version':u'v1'
+}
+</pre>
+
+<h4 style="display:inline;">List Transcriptions</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/transcriptions/list/">Documentation</a><br>
+
+        <p>Request and print a transcription list resource:</p>
+
+<pre class="prettyprint lang-py">
+transcriptions  = account.transcriptions
+
+print transcriptions
+</pre> 
+
+<p>print example output:</p>
+
+<pre class="prettyprint lang-py">
+{
+   u'transcriptions':[
+      {
+         u'status':u'completed',
+         u'date_updated':u'Mon,
+         22         Oct 2012 18:26:14         +0000',
+         u'transcription_text':u"We're sorry, The phone number entered has been restricted...",
+         u'price':u'0.050000',
+         u'uri':u'/v1/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.json',
+         u'transcribe_callback':         u'',
+         u'account_sid':u'{AccountSid}',
+         u'audio_url':         u'http://www.webapp.com/blacklist_message.mp3',
+         u'callback_method':u'POST',
+         u'sid':u'{TranscriptionSid}',
+         u'duration':u'2',
+         u'date_created':u'Mon,
+         22         Oct 2012 18:21:17         +0000',
+         u'type':u'auto',
+         u'api_version':u'v1'
+      },
+      {
+         u'status':u'completed',
+         u'date_updated':u'Mon,
+         22         Oct 2012 18:22:14         +0000',
+         u'transcription_text':u"Hello, this text is transcribed audio.",
+         u'price':u'0.050000',
+         u'uri':u'/v1/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.json',
+         u'transcribe_callback':         u'',
+         u'account_sid':u'{AccountSid}',
+         u'audio_url':         u'http://www.foo.com/file.mp3',
+         u'callback_method':u'POST',
+         u'sid':u'{TranscriptionSid}',
+         u'duration':u'2',
+         u'date_created':u'Mon,
+         22         Oct 2012 18:20:27         +0000',
+         u'type':u'auto',
+         u'api_version':u'v1'
+      }
+   ],
+   u'first_page_uri':u'/v1/Accounts/{AccountSid}/Transcriptions.json?Page=0&amp;PageSize=50',
+   u'end':49,
+   u'previous_page_uri':None,
+   u'uri':u'/v1/Accounts/{AccountSid}/Transcriptions.json',
+   u'page_size':50,
+   u'start':0,
+   u'next_page_uri':None,
+   u'num_pages':1,
+   u'total':72,
+   u'last_page_uri':u'/v1/Accounts/{AccountSid}/Transcriptions.json?Page=0&amp;PageSize=50',
+   u'page':0
+}
+</pre>
+
+<h4 style="display:inline;">Transcribe Recording</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/transcriptions/transcribe-recording/">Documentation</a><br>
+
+        <p>Transcribe recordings with the create method:</p>
+
+<pre class="prettyprint lang-py">
+... (add helper examples)
+</pre>
+
+<h4 style="display:inline;">Transcribe Audio URL</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/transcriptions/transcribe-audio-url/">Documentation</a><br>
+
+        <p>Transcribe audio files located at external URLs with the create method:</p>
+
+<pre class="prettyprint lang-py">
+... (add helper examples)
+</pre>
+
+<hr><h2 id="carrier">Carrier Services</h2>
+
+<pre class="prettyprint lang-py">
+phone_number = ['{ E.164 Format }', '{ E.164 Format }'] 
+</pre>    
+
+<h4 style="display:inline;">Carrier Lookup</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/carrier-services/carrier-lookup/">Documentation</a><br>
+
+        <p>Request and print a carrier lookup resource:</p>
+
+<pre class="prettyprint lang-py">
+carrier_details  = account.carrier.create( 
+    phone_number = '{ E.164 Format }' 
+) 
+ 
+print carrier_details
+</pre> 
+
+<p>print example output:</p>
+
+<pre>
+...
+</pre>
+
+<h4 style="display:inline;">CNAM (caller id) Lookup</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/carrier-services/cnam-lookup/">Documentation</a><br>
+
+        <p>Request and print a cnam lookup resource:</p>
+
+<pre class="prettyprint lang-py">
+cnam_details  = account.cnam.create( 
+    phone_number = '{ E.164 Format }' 
+) 
+ 
+print cnam_details
+</pre> 
+
+<p>print example output:</p>
+
+<pre>
+...
+</pre>
+
+<h4 style="display:inline;">BNA (billing name address) Lookup</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/carrier-services/bna-lookup/">Documentation</a><br>
+
+        <p>Request and print a bna lookup resource:</p>
+
+<pre class="prettyprint lang-py">
+bna_details  = account.bna.create( 
+    phone_number = '{ E.164 Format }' 
+) 
+ 
+print bna_details
+</pre> 
+
+<p>print example output:</p>
+
+<pre>
+...
+</pre>
+
+<hr><h2 id="fraud">Fraud Control</h2>   
+
+<h4 style="display:inline;">List Fraud Control resources</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/fraud-control/list/">Documentation</a><br>
+
+        <p>Request and print a fraud control list resource:</p>
+
+<pre class="prettyprint lang-py">
+...
+</pre> 
+
+<p>print example output:</p>
+
+<pre>
+...
+</pre>    
+
+<h4 style="display:inline;">Authorize Destination</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/fraud-control/authorize/">Documentation</a><br>
+
+        <p>Authorize desctinations with the create method:</p>
+
+<pre class="prettyprint lang-py">
+...
+</pre>
+
+<h4 style="display:inline;">Extend Destination Authorization</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/fraud-control/extend/">Documentation</a><br>
+
+        <p>Extend desctination authorization with the create method:</p>
+
+<pre class="prettyprint lang-py">
+...
+</pre> 
+
+<h4 style="display:inline;">Block Destination</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/fraud-control/block/">Documentation</a><br>
+
+        <p>Block desctinations with the create method:</p>
+
+<pre class="prettyprint lang-py">
+...
+</pre>
+
+<h4 style="display:inline;">Whitelist Destination</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/fraud-control/whitelist/">Documentation</a><br>
+
+        <p>Whitelist desctinations with the create method:</p>
+
+<pre class="prettyprint lang-py">
+...
+</pre>
+
+      </div>
+
+      <div class="span-one-third">
+
+        <div id="tab-navi">
+
+          <ul>
+            <li class="ui-state-default"><a href="https://github.com/telapi/telapi-python/zipball/master">Download ZIP File &#187;</a></li>
+            <li class="ui-state-default"><a href="https://github.com/telapi/telapi-python/tarball/master">Download TAR Ball &#187;</a></li>
+            <li class="ui-state-default"><a href="https://github.com/telapi/telapi-python">View On GitHub &#187;</a></li>
+          </ul>
+
+                  <ul>
+                          <li class="ui-state-default">
+                              <a href="#inboundxml">InboundXML</a>
+                          </li> 
+
+                          <li class="ui-state-default">
+                              <a href="#rest-api">REST API</a>
+                          </li>                
+                                                          
+                          <li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#accounts">Accounts</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#sms">SMS</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#calls">Calls</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#conferences">Conferences</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#applications">Applications</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#ipn">Incoming Phone Numbers</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#available">Available Phone Numbers</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#recordings">Recordings</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#notifications">Notifications</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#transcriptions">Transcriptions</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#carrier">Carrier Services</a>
+                                      </li>
+                                      <li style="font-weight: normal;font-family:ProximaNovaRegular" class='ui-state-default'>
+                                          <a href="#fraud">Fraud Control</a>
+                                      </li>                                                                                                                                                                            
+                          </li> 
+     
+                  </ul>
+          </div>
+      </div>
+
     </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
     </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Telapi-python maintained by <a href="https://github.com/TelAPI">TelAPI</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
     
-
   </body>
 </html>
