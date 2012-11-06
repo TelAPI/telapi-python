@@ -20,6 +20,14 @@ class TestREST(unittest.TestCase):
         with self.assertRaises(AttributeError):
             self.client.bad_resource_name
 
+    def test_bad_credentials_account(self):
+        with self.assertRaises(rest.exceptions.AccountSidError):
+            rest.Client(account_sid='abc123')
+
+    def test_bad_credentials_token(self):
+        with self.assertRaises(rest.exceptions.AuthTokenError):
+            rest.Client(auth_token='abc123')
+
     def test_account_list_resource(self):
         accounts = self.client.accounts
         self.assertEquals(accounts.__class__.__name__, 'AccountListResource')

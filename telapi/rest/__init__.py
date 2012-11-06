@@ -8,6 +8,7 @@ import json
 from telapi.schema import SCHEMA
 from telapi import VERSION
 
+__ALL__ = ['exceptions']
 
 
 USER_AGENT = "TelAPI-Python/%s (%s %s)" % (VERSION, platform.system(), platform.release())
@@ -378,10 +379,10 @@ class Client(object):
         self.auth_token  = auth_token or os.environ.get("TELAPI_AUTH_TOKEN")
         self.base_url    = base_url
 
-        if not self.account_sid or not self.account_sid.startswith("AC"):
+        if not self.account_sid or not self.account_sid.startswith("AC") or len(self.account_sid) != 34:
             raise exceptions.AccountSidError()
 
-        if not self.auth_token:
+        if not self.auth_token or len(self.auth_token) != 32:
             raise exceptions.AuthTokenError()
 
     def _send_request(self, resource_uri, method, params=None):
