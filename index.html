@@ -581,6 +581,20 @@ print call
 }
 </pre>
 
+<h4 style="display:inline;">Interrupt Live Call</h4>
+
+        <a href="http://www.telapi.com/docs/api/rest/calls/interrupt/">Documentation</a><br>
+
+        <p>To interrupt a call, simply fetch it and specify the redirect url:</p>
+
+<pre class="prettyprint lang-py">
+call  = account.calls['{CallSid}']
+ 
+call.url = 'http://foo.com/redirect.xml'
+ 
+call.save()
+</pre>
+
 <h4 style="display:inline;">Hangup Call</h4>
 
         <a href="http://www.telapi.com/docs/api/rest/calls/hangup/">Documentation</a><br>
