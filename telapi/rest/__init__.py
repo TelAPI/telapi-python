@@ -378,6 +378,7 @@ class Client(object):
         self.account_sid = account_sid or os.environ.get("TELAPI_ACCOUNT_SID")
         self.auth_token  = auth_token or os.environ.get("TELAPI_AUTH_TOKEN")
         self.base_url    = base_url
+        self.session     = requests.session
 
         if not self.account_sid or not self.account_sid.startswith("AC") or len(self.account_sid) != 34:
             raise exceptions.AccountSidError()
@@ -400,11 +401,11 @@ class Client(object):
         }
 
         if method == "POST":
-            response = requests.post(url, data=params, **extra_params)
+            response = self.session.post(url, data=params, **extra_params)
         elif method == "DELETE":
-            response = requests.delete(url, data=params, **extra_params)
+            response = self.session.delete(url, data=params, **extra_params)
         else:
-            response = requests.get(url, params=params, **extra_params)
+            response = self.session.get(url, params=params, **extra_params)
 
         if response.status_code >= 400:
                 try:
