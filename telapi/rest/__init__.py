@@ -279,7 +279,7 @@ class InstanceResource(Resource):
             self._resource_data = resource_data
         except exceptions.RequestError, e:
             if not e.http_code == 405:
-                print e
+                # print e
                 raise
 
     def __getattr__(self, name):
@@ -323,7 +323,7 @@ class InstanceResource(Resource):
             for attr, param in self._create_params.items():
                 try:
                     attr_value = getattr(self, attr, None)
-                    print 'save create', attr, param, attr_value
+                    # print 'save create', attr, param, attr_value
                     if attr_value is not None:
                         data[param] = attr_value
                 except AttributeError:
@@ -333,7 +333,7 @@ class InstanceResource(Resource):
             for attr, param in self._update_params.items():
                 try:
                     attr_value = getattr(self, attr, None)
-                    print 'save update', attr, param, attr_value
+                    # print 'save update', attr, param, attr_value
                     if attr_value is not None:
                         data[param] = attr_value
                 except AttributeError:
@@ -378,7 +378,7 @@ class Client(object):
         self.account_sid = account_sid or os.environ.get("TELAPI_ACCOUNT_SID")
         self.auth_token  = auth_token or os.environ.get("TELAPI_AUTH_TOKEN")
         self.base_url    = base_url
-        self.session     = requests.session
+        self.session     = requests.session()
 
         if not self.account_sid or not self.account_sid.startswith("AC") or len(self.account_sid) != 34:
             raise exceptions.AccountSidError()
@@ -421,13 +421,13 @@ class Client(object):
         try:
             return json.loads(response.content)
         except ValueError, e:
-            print 'Bad JSON returned! response.text:'
-            print response.content
+            # print 'Bad JSON returned! response.text:'
+            # print response.content
 
             raise
         except:
-            print 'Bad Response!'
-            print response, dir(response)
+            # print 'Bad Response!'
+            # print response, dir(response)
             
             raise
 
