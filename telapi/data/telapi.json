@@ -147,7 +147,12 @@
                     "accounts",
                     "recordings"
                 ],
-                "create_params": {}
+                "create_params": {
+                    "audio_url":"AudioUrl",
+                    "transcribe_callback":"TranscribeCallback",
+                    "callback_method":"CallbackMethod",
+                    "quality":"Quality"
+                }
             },
             "calls": {
                 "name": "Call",
