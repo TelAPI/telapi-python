@@ -148,11 +148,11 @@
                     "recordings"
                 ],
                 "create_params": {
-                    "audio_url":"AudioUrl",
-                    "transcribe_callback":"TranscribeCallback",
-                    "callback_method":"CallbackMethod",
-                    "quality":"Quality"
-                }
+                    "audio_url": "AudioUrl",
+                    "transcribe_callback": "TranscribeCallback",
+                    "callback_method": "CallbackMethod"
+                },
+                "filter_params": []
             },
             "calls": {
                 "name": "Call",
@@ -281,7 +281,9 @@
                 "parent_resources": [
                     "accounts"
                 ],
-                "create_params": {},
+                "create_params": {
+                    "phone_number": "PhoneNumber"
+                },
                 "filter_params": [
                     "PhoneNumber"
                 ]

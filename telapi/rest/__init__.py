@@ -279,13 +279,14 @@ class InstanceResource(Resource):
             self._resource_data = resource_data
         except exceptions.RequestError, e:
             if not e.http_code == 405:
-                # print e
+                print e
                 raise
 
     def __getattr__(self, name):
         if name.startswith('_'):
             return self.__getattribute__(name)
 
+        # From is a reserved keyword so we need to map it to from_number
         if name == "from_number":
             name = "from"
         elif name == "to_number":
@@ -320,6 +321,7 @@ class InstanceResource(Resource):
         data = {}
 
         if not self._populated:
+            self._populated = True
             for attr, param in self._create_params.items():
                 try:
                     attr_value = getattr(self, attr, None)
@@ -421,13 +423,13 @@ class Client(object):
         try:
             return json.loads(response.content)
         except ValueError, e:
-            # print 'Bad JSON returned! response.text:'
-            # print response.content
+            print 'Bad JSON returned! response.text:'
+            print response.content
 
             raise
         except:
-            # print 'Bad Response!'
-            # print response, dir(response)
+            print 'Bad Response!'
+            print response, dir(response)
             
             raise
 
