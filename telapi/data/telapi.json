@@ -429,6 +429,15 @@
                     "friendly_name": "FriendlyName"
                 }
             },
+            "generate_token": {
+                "name": "GenerateToken",
+                "url": "GenerateToken",
+                "attributes": [],
+                "parent_resources": [
+                    "applications"
+                ],
+                "create_params": {}
+            },
             "fraud": {
                 "name": "Fraud",
                 "url": "Fraud",
