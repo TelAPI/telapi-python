@@ -1,0 +1,104 @@
+{
+    "page": 0,
+    "num_pages": 366,
+    "page_size": 3,
+    "total": 1098,
+    "start": 0,
+    "end": 2,
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls.json",
+    "first_page_uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls.json?Page=0&amp;PageSize=3",
+    "previous_page_uri": null,
+    "next_page_uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls.json?Page=1&amp;PageSize=3",
+    "last_page_uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls.json?Page=365&amp;PageSize=3",
+    "calls": [
+    
+    {
+    "sid": "CAdefc810fedc3487faf27bf1e991e5ce0",
+    "date_created": "Tue, 19 Feb 2013 21:53:21 +0000",
+    "date_updated": "Tue, 19 Feb 2013 21:53:30 +0000",
+    "parent_call_sid": "",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "to": "+17325551234",
+    "from": "+15035550006",
+    "phone_number_sid": "DId5931ffd3a5841ecb33bc45f6e43ac14",
+    "status": "completed",
+    "start_time": "Tue, 19 Feb 2013 21:53:21 +0000",
+    "end_time": "Tue, 19 Feb 2013 21:53:30 +0000",
+    "duration": "9",
+    "price": "0.010000",
+    "direction": "inbound",
+    "answered_by": "None",
+    "api_version": "v1",
+    "forwarded_from": "",
+    
+    
+    "caller_id_blocked": "false",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CAdefc810fedc3487faf27bf1e991e5ce0.json",
+    "subresource_uris": {
+        "notifications": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CAdefc810fedc3487faf27bf1e991e5ce0/Notifications.json",
+        "recordings": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CAdefc810fedc3487faf27bf1e991e5ce0/Recordings.json"
+    }
+}
+ 
+    
+    , 
+    {
+    "sid": "CA9ccd9a0312b247b187b3351055c057bb",
+    "date_created": "Tue, 19 Feb 2013 21:53:20 +0000",
+    "date_updated": "Tue, 19 Feb 2013 21:53:29 +0000",
+    "parent_call_sid": "",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "to": "+12075557561",
+    "from": "+17325551010",
+    "phone_number_sid": "DId5931ffd3a5841ecb33bc45f6e43ac14",
+    "status": "completed",
+    "start_time": "Tue, 19 Feb 2013 21:53:20 +0000",
+    "end_time": "Tue, 19 Feb 2013 21:53:29 +0000",
+    "duration": "9",
+    "price": "0.010000",
+    "direction": "inbound",
+    "answered_by": "None",
+    "api_version": "v1",
+    "forwarded_from": "",
+    
+    
+    "caller_id_blocked": "false",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CA9ccd9a0312b247b187b3351055c057bb.json",
+    "subresource_uris": {
+        "notifications": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CA9ccd9a0312b247b187b3351055c057bb/Notifications.json",
+        "recordings": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CA9ccd9a0312b247b187b3351055c057bb/Recordings.json"
+    }
+}
+ 
+    
+    , 
+    {
+    "sid": "CAd3440786e01c40eba386e9c4d475feca",
+    "date_created": "Tue, 19 Feb 2013 21:53:18 +0000",
+    "date_updated": "Tue, 19 Feb 2013 21:53:27 +0000",
+    "parent_call_sid": "",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "to": "+17325551010",
+    "from": "+17325551234",
+    "phone_number_sid": "DId5931ffd3a5841ecb33bc45f6e43ac14",
+    "status": "completed",
+    "start_time": "Tue, 19 Feb 2013 21:53:18 +0000",
+    "end_time": "Tue, 19 Feb 2013 21:53:27 +0000",
+    "duration": "9",
+    "price": "0.010000",
+    "direction": "inbound",
+    "answered_by": "None",
+    "api_version": "v1",
+    "forwarded_from": "",
+    
+    
+    "caller_id_blocked": "false",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CAd3440786e01c40eba386e9c4d475feca.json",
+    "subresource_uris": {
+        "notifications": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CAd3440786e01c40eba386e9c4d475feca/Notifications.json",
+        "recordings": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CAd3440786e01c40eba386e9c4d475feca/Recordings.json"
+    }
+}
+ 
+    ]
+}

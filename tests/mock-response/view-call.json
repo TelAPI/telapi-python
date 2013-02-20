@@ -1,0 +1,27 @@
+{
+    "sid": "CAdefc810fedc3487faf27bf1e991e5ce0",
+    "date_created": "Tue, 19 Feb 2013 21:53:21 +0000",
+    "date_updated": "Tue, 19 Feb 2013 21:53:30 +0000",
+    "parent_call_sid": "",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "to": "+17325551234",
+    "from": "+15035550006",
+    "phone_number_sid": "DId5931ffd3a5841ecb33bc45f6e43ac14",
+    "status": "completed",
+    "start_time": "Tue, 19 Feb 2013 21:53:21 +0000",
+    "end_time": "Tue, 19 Feb 2013 21:53:30 +0000",
+    "duration": "9",
+    "price": "0.010000",
+    "direction": "inbound",
+    "answered_by": "None",
+    "api_version": "v1",
+    "forwarded_from": "",
+    
+    
+    "caller_id_blocked": "false",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CAdefc810fedc3487faf27bf1e991e5ce0.json",
+    "subresource_uris": {
+    "notifications": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CAdefc810fedc3487faf27bf1e991e5ce0/Notifications.json",
+    "recordings": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls/CAdefc810fedc3487faf27bf1e991e5ce0/Recordings.json"
+    }
+}

@@ -168,17 +168,13 @@
                     "status",
                     "direction",
                     "from",
-                    "privacy_hide_number",
-                    "url",
-                    "action",
+                    "uri",
                     "date_updated",
                     "answered_by",
                     "start_time",
                     "phone_number_sid",
                     "parent_call_sid",
-                    "sip_privacy",
                     "account_sid",
-                    "p_asserted_identity",
                     "to",
                     "forwarded_from",
                     "end_time",
@@ -186,7 +182,9 @@
                     "duration",
                     "date_created",
                     "price",
-                    "api_version"
+                    "api_version",
+                    "subresource_uris",
+                    "caller_id_blocked"
                 ],
                 "parent_resources": [
                     "accounts"
@@ -201,7 +199,10 @@
                     "play_dtmf": "PlayDtmf",
                     "play_dtmf_leg": "PlayDtmfLeg",
                     "url": "Url"
-                }
+                },
+                "filter_params": [
+                    "To"
+                ]
             },
             "plays": {
                 "name": "Play",

@@ -1,8 +1,13 @@
+import sys
+import os
+sys.path.append(os.getcwd() + '/..')
+
 import unittest
 import json
 from mock import patch
 from telapi import rest
 from telapi.schema import SCHEMA
+
 
 class TestREST(unittest.TestCase):
 
@@ -11,6 +16,7 @@ class TestREST(unittest.TestCase):
         self.test_sid = 'ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
         self.test_token = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
         self.test_number = '+17325551234'
+        self.test_url = 'http://foo.com'
         self.client = rest.Client(base_url='https://api.telapi.com/v1/', account_sid=self.test_sid, auth_token=self.test_token)
 
 
@@ -64,7 +70,6 @@ class TestREST(unittest.TestCase):
         self.assertEqual(set(SCHEMA["rest_api"]["components"].get('accounts')['attributes']), set(account._resource_data.keys()))
 
 
-
     #
     #  - SMS -
     #
@@ -99,6 +104,48 @@ class TestREST(unittest.TestCase):
 
         # Check schema attribute accuracy
         self.assertEqual(set(SCHEMA["rest_api"]["components"].get('sms_messages')['attributes']), set(sms._resource_data.keys()))
+
+    #
+    #  - Calls -  
+    #
+    @patch("telapi.rest.Client._send_request")
+    def test_call_resource(self, mock):
+        
+        mock.return_value = json.load(open('mock-response/list-calls.json','r'))
+
+        call_list = self.client.accounts[self.client.account_sid].calls
+
+        self.assertEqual(call_list.__class__.__name__, 'CallListResource')
+
+        # check iter
+        for call in call_list:
+            self.assertEqual(call.__class__.__name__, 'Call')
+
+        call = call_list[0]
+
+        # Check attribute access
+        self.assertEqual(call.status, 'completed')
+        self.assertEqual(call.account_sid, self.client.account_sid)
+
+        # check filter
+        self.assertRaises(AttributeError, lambda: call_list.filter(foo='123'))
+
+        self.assertEqual(call_list.filter(To='+17325551234').__class__.__name__, 'CallListResource')
+
+        # Check schema attribute accuracy
+        self.assertEqual(set(SCHEMA["rest_api"]["components"].get('calls')['attributes']), set(call.keys()))
+
+        # check slicing
+        self.assertEqual(call_list[0:3].__class__.__name__, 'CallListResource')
+
+
+    @patch("telapi.rest.Client._send_request")
+    def test_create_call(self, mock):
+        
+        mock.return_value = json.load(open('mock-response/view-call.json','r'))
+
+
+        call = self.client.accounts[self.client.account_sid].calls.create(from_number=self.test_number, to_number=self.test_number, url=self.test_url)
 
 
     #

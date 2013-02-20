@@ -85,7 +85,7 @@ class ListResource(Resource):
     def __getitem__(self, key):
         # Numeric index
         if isinstance(key, int):
-            # TODO: Cache length so it"s not calulated every time
+            # TODO: Cache length so it's not calulated every time
 
             self.fetch()
 
@@ -152,7 +152,7 @@ class ListResource(Resource):
     def __len__(self):
         self.fetch()
 
-        return self._page_end - self._page_start
+        return self._page_end + 1
 
     def __iter__(self):
         return self
@@ -196,6 +196,7 @@ class ListResource(Resource):
     def copy(self):
 
         new_copy = _name_to_list_class(self._name)(parent=self._parent)
+
         new_copy._filters = self._filters.copy()
 
         return new_copy
@@ -218,7 +219,7 @@ class ListResource(Resource):
             if name in copy._filter_params:
                 copy._filters[name] = value
             else:
-                raise AttributeError("%s is not a valid filter for %s" % (name, copy))
+                raise AttributeError("%s is not a valid filter for %s. valid filters are: %s" % (name, copy.__class__.__name__, copy._filter_params))
 
         return copy
 
@@ -354,6 +355,9 @@ class InstanceResource(Resource):
         self._client._delete(self._url + ".json")
 
         return None
+
+    def keys(self):
+        return self._resource_data.keys()
 
     def __repr__(self):
         self.fetch()
