@@ -13,7 +13,10 @@
                     "date_created",
                     "date_updated",
                     "type",
-                    "time_zone"
+                    "time_zone",
+                    "subresource_uris",
+                    "uri",
+                    "max_outbound_limit"
                 ],
                 "create_params": {},
                 "parent_resources": []
@@ -107,7 +110,8 @@
                     "sid",
                     "date_sent",
                     "date_created",
-                    "api_version"
+                    "api_version",
+                    "uri"
                 ],
                 "parent_resources": [
                     "accounts"

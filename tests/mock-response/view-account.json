@@ -1,0 +1,33 @@
+{
+    "sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "friendly_name": "foo@telapi.com",
+    "status": "active",
+    
+    "account_balance": "17.090000",
+    
+    
+    "date_created": "Wed, 14 Mar 2012 16:47:29 +0000",
+    "date_updated": "Thu, 14 Feb 2013 15:42:15 +0000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.json",
+    "max_outbound_limit" : "0.500000",
+    "type": "Full",
+    "time_zone": "EST",
+    
+    "subresource_uris": {
+        "available_phone_numbers": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/AvailablePhoneNumbers.json",
+        "calls": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Calls.json",
+        "conferences": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Conferences.json",
+        "incoming_phone_numbers": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/IncomingPhoneNumbers.json",
+        "notifications": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Notifications.json",
+        "recordings": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Recordings.json",
+        "sms_messages": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages.json",
+        "faxes": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Faxes.json",
+        "transcriptions": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Transcriptions.json",
+        "transactions": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Transactions.json",
+        "applications": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Applications.json",
+        "fraud": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Fraud.json",
+        "cnam": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/CNAM.json",
+        "carrier": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Carrier.json",
+        "usages": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Usages.json"
+        }
+}

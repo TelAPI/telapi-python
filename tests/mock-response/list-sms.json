@@ -1,0 +1,194 @@
+{
+    "page": 0, 
+    "num_pages": 519 ,
+    "page_size": 10,
+    "total": 5198,
+    "start": 0,
+    "end": 9, 
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages.json",
+    "first_page_uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages.json?Page=0&amp;PageSize=10",
+    "previous_page_uri": null,
+    "next_page_uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages.json?Page=1&amp;PageSize=10",
+    "last_page_uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages.json?Page=518&amp;PageSize=10",
+    "sms_messages": [
+    
+    {
+    "api_version": "v1",
+    "sid": "SMfe2f5af3a2644821a30b08e2c376beff",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 17:59:07 +0000",
+    "date_updated": "Thu, 14 Feb 2013 17:59:07 +0000",
+    "date_sent": "Thu, 14 Feb 2013 17:59:06 +0000",
+    "to": "+15551014321",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "inbound",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SMfe2f5af3a2644821a30b08e2c376beff.json"
+}
+ 
+    
+    , 
+    {
+    "api_version": "v1",
+    "sid": "SM0c8c22a8bee6422b9616299c4ee6abd7",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 17:59:04 +0000",
+    "date_updated": "Thu, 14 Feb 2013 17:59:08 +0000",
+    "date_sent": "Thu, 14 Feb 2013 17:59:07 +0000",
+    "to": "+15551014321",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "outbound-api",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SM0c8c22a8bee6422b9616299c4ee6abd7.json"
+}
+ 
+    
+    , 
+    {
+    "api_version": "v1",
+    "sid": "SM5b293bad1ace4e8c8b547f6ff09a8ad7",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 16:55:04 +0000",
+    "date_updated": "Thu, 14 Feb 2013 16:55:04 +0000",
+    "date_sent": "Thu, 14 Feb 2013 16:55:04 +0000",
+    "to": "+15551014321",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "inbound",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SM5b293bad1ace4e8c8b547f6ff09a8ad7.json"
+}
+ 
+    
+    , 
+    {
+    "api_version": "v1",
+    "sid": "SM27830d9b01e64073b5073739efa4a8b7",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 16:55:02 +0000",
+    "date_updated": "Thu, 14 Feb 2013 16:55:06 +0000",
+    "date_sent": "Thu, 14 Feb 2013 16:55:04 +0000",
+    "to": "+15551014321",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "outbound-api",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SM27830d9b01e64073b5073739efa4a8b7.json"
+}
+ 
+    
+    , 
+    {
+    "api_version": "v1",
+    "sid": "SM83810df52292474d8506e788cc57ee4c",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 16:20:11 +0000",
+    "date_updated": "Thu, 14 Feb 2013 16:20:11 +0000",
+    "date_sent": "Thu, 14 Feb 2013 16:20:11 +0000",
+    "to": "+15551014321",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "inbound",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SM83810df52292474d8506e788cc57ee4c.json"
+}
+ 
+    
+    , 
+    {
+    "api_version": "v1",
+    "sid": "SM2ba01c8e4505460cb5d4ae6be2e33b56",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 16:20:08 +0000",
+    "date_updated": "Thu, 14 Feb 2013 16:20:12 +0000",
+    "date_sent": "Thu, 14 Feb 2013 16:20:11 +0000",
+    "to": "+15551014321",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "outbound-api",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SM2ba01c8e4505460cb5d4ae6be2e33b56.json"
+}
+ 
+    
+    , 
+    {
+    "api_version": "v1",
+    "sid": "SM49af99b6e46e46cb8faaaf15082091a0",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 15:55:25 +0000",
+    "date_updated": "Thu, 14 Feb 2013 15:55:25 +0000",
+    "date_sent": "Thu, 14 Feb 2013 15:55:24 +0000",
+    "to": "+15551014321",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "inbound",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SM49af99b6e46e46cb8faaaf15082091a0.json"
+}
+ 
+    
+    , 
+    {
+    "api_version": "v1",
+    "sid": "SM0b40b12bc22849c9af3e155ac5801cbe",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 15:55:22 +0000",
+    "date_updated": "Thu, 14 Feb 2013 15:55:26 +0000",
+    "date_sent": "Thu, 14 Feb 2013 15:55:25 +0000",
+    "to": "+15551014321",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "outbound-api",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SM0b40b12bc22849c9af3e155ac5801cbe.json"
+}
+ 
+    
+    , 
+    {
+    "api_version": "v1",
+    "sid": "SMde0d2e9760964f45a32bfaf21fe5a028",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 15:50:27 +0000",
+    "date_updated": "Thu, 14 Feb 2013 15:50:28 +0000",
+    "date_sent": "Thu, 14 Feb 2013 15:50:27 +0000",
+    "to": "+15551014321",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "inbound",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SMde0d2e9760964f45a32bfaf21fe5a028.json"
+}
+ 
+    
+    , 
+    {
+    "api_version": "v1",
+    "sid": "SMaccd8249c2294062a013b97ec4bf0280",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 15:50:25 +0000",
+    "date_updated": "Thu, 14 Feb 2013 15:50:29 +0000",
+    "date_sent": "Thu, 14 Feb 2013 15:50:28 +0000",
+    "to": "+15551014321",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "outbound-api",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SMaccd8249c2294062a013b97ec4bf0280.json"
+}
+ 
+    ]
+}

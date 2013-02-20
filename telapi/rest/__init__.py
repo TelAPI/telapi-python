@@ -375,7 +375,7 @@ class Client(object):
 
     __metaclass__ = ClientMetaclass
     
-    def __init__(self, account_sid=None, auth_token=None, base_url="https://api.telapi.com/2011-07-01/", *args, **kwargs):
+    def __init__(self, account_sid=None, auth_token=None, base_url="https://api.telapi.com/v1/", *args, **kwargs):
         object.__init__(self)
         self.account_sid = account_sid or os.environ.get("TELAPI_ACCOUNT_SID")
         self.auth_token  = auth_token or os.environ.get("TELAPI_AUTH_TOKEN")

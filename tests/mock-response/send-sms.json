@@ -1,0 +1,15 @@
+{
+    "api_version": "v1",
+    "sid": "SMfe2f5af3a2644821a30b08e2c376beff",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "date_created": "Thu, 14 Feb 2013 17:59:07 +0000",
+    "date_updated": "Thu, 14 Feb 2013 17:59:07 +0000",
+    "date_sent": "Thu, 14 Feb 2013 17:59:06 +0000",
+    "to": "+17325551234",
+    "from": "+17325551234",
+    "body": "Hello from telapi python!",
+    "status": "sent",
+    "direction": "inbound",
+    "price": "0.010000",
+    "uri": "/v1/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/SMS/Messages/SMfe2f5af3a2644821a30b08e2c376beff.json"
+}
