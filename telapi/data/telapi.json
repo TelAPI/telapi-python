@@ -437,7 +437,15 @@
             "generate_token": {
                 "name": "GenerateToken",
                 "url": "GenerateToken",
-                "attributes": [],
+                "attributes": [
+                    "date_updated",
+                    "account_sid",
+                    "application_sid",
+                    "sid",
+                    "date_created",
+                    "client_token",
+                    "client_password"
+                ],
                 "parent_resources": [
                     "applications"
                 ],
