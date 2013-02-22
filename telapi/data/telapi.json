@@ -482,7 +482,9 @@
                     "Redirect",
                     "Reject",
                     "Pause",
-                    "Sms"
+                    "Sms",
+                    "Ping",
+                    "PlayLastRecording"
                 ],
                 "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/response/",
                 "blank": false
@@ -490,7 +492,8 @@
             "Say": {
                 "attributes": [
                     "voice",
-                    "loop"
+                    "loop",
+                    "language"
                 ],
                 "nesting": [],
                 "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/say/",
@@ -647,6 +650,20 @@
                 "nesting": [],
                 "docs_url": "http: //www.telapi.com/docs/api/inboundxml/sms/sms/",
                 "blank": false
+            },
+            "Ping": {
+                "attributes": [
+                    "method"
+                ],
+                "nesting": [],
+                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/ping/",
+                "blank": false
+            },
+            "PlayLastRecording": {
+                "attributes": [],
+                "nesting": [],
+                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/playlastrecording/",
+                "blank": true
             }
         }
     }

@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.getcwd() + '/..')
+
 import unittest
 from telapi import inboundxml
 
@@ -127,10 +131,20 @@ class TestAllTelml(unittest.TestCase):
             '<Response><Say>You are about to enter the conference</Say><Dial><Conference>Conference Room A</Conference></Dial></Response>'
         )
 
-    # SMS
+    # Sms
     def test_sms(self):
         self.response.append(inboundxml.Sms(from_number="+15556669999", to_number="+12223334444", body="Hi there!"))
-        self.assertEqual(str(self.response), '<Response><Gather></Gather></Response>')
+        self.assertEqual(str(self.response), '<Response><Sms to="+12223334444" from="+15556669999">Hi there!</Sms></Response>')
+
+    # Ping
+    def test_ping(self):
+        self.response.append(inboundxml.Ping('http://foo.com',method="POST"))
+        self.assertEqual(str(self.response), '<Response><Ping method="POST">http://foo.com</Ping></Response>')
+
+    # PlayLastRecording
+    def test_playlastrecording(self):
+        self.response.append(inboundxml.PlayLastRecording())
+        self.assertEqual(str(self.response), '<Response><PlayLastRecording></PlayLastRecording></Response>')
 
 if __name__ == '__main__':
     unittest.main()

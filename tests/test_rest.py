@@ -144,8 +144,12 @@ class TestREST(unittest.TestCase):
         
         mock.return_value = json.load(open('mock-response/view-call.json','r'))
 
+        # check bad create param
+        self.assertRaises(AttributeError, lambda: self.client.accounts[self.client.account_sid].calls.create(foo='foo'))
 
         call = self.client.accounts[self.client.account_sid].calls.create(from_number=self.test_number, to_number=self.test_number, url=self.test_url)
+
+        self.assertEqual(call.__class__.__name__, 'Call')
 
 
     #

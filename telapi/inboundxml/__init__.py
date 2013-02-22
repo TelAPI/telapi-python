@@ -54,6 +54,13 @@ class Element(object):
                 (name, self._element_name))
 
     def __setattr__(self, name, value):
+
+        # From is a reserved keyword so we need to map it to from_number
+        if name == "from_number":
+            name = "from"
+        elif name == "to_number":
+            name = "to"
+            
         if name.startswith('_'):
             object.__setattr__(self, name, value)
             return
@@ -66,6 +73,13 @@ class Element(object):
         self._attributes[name] = value
             
     def __getattr__(self, name):
+
+        # From is a reserved keyword so we need to map it to from_number
+        if name == "from_number":
+            name = "from"
+        elif name == "to_number":
+            name = "to"
+
         if name == 'body':
             return self._body
 
