@@ -92,6 +92,9 @@ class ListResource(Resource):
             if not self.total:
                 raise IndexError()
 
+            if self._short_name == 'local' or self._short_name == 'tollfree':
+                self._short_name = 'available_phone_numbers'
+
             resource_list = self._resource_data[self._short_name]
 
             # Negative index
@@ -251,6 +254,9 @@ class InstanceResource(Resource):
         if 'sid' in self._allowed_attributes:
             self.sid = str(sid).strip() if sid else sid
             self._short_url = self.sid
+        elif 'country_code' in self._allowed_attributes:
+            # regard country code as sid
+            self._short_url = sid 
         else:
             self._short_url = ""
 

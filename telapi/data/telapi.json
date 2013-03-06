@@ -127,6 +127,39 @@
                     "From"
                 ]
             },
+            "faxes": {
+                "name": "Faxes",
+                "url": "Faxes",
+                "attributes": [
+                    "url",
+                    "status",
+                    "direction",
+                    "date_updated",
+                    "price",
+                    "from",
+                    "account_sid",
+                    "to",
+                    "sid",
+                    "date_sent",
+                    "date_created",
+                    "api_version",
+                    "uri"
+                ],
+                "parent_resources": [
+                    "accounts"
+                ],
+                "create_params": {
+                    "status_callback": "StatusCallback",
+                    "status_callback_method": "StatusCallbackMethod",
+                    "from": "From",
+                    "to": "To",
+                    "url": "Url"
+                },
+                "filter_params": [
+                    "To",
+                    "From"
+                ]
+            },
             "transcriptions": {
                 "name": "Transcription",
                 "url": "Transcriptions",
@@ -192,7 +225,27 @@
                 "create_params": {
                     "from": "From",
                     "to": "To",
-                    "url": "Url"
+                    "url": "Url",
+                    "method" : "Method",
+                    "timeout" : "Timeout",
+                    "send_digits" : "SendDigits",
+                    "status_callback" : "StatusCallback",
+                    "status_callback_method" : "StatusCallbackMethod",
+                    "fallback_url" : "FallbackUrl",
+                    "fallback_method" : "FallbackMethod",
+                    "heartbeat_url" : "HeartbeatUrl",
+                    "heartbeat_method" : "HeartbeatMethod",
+                    "forwarded_from" : "ForwardedFrom",
+                    "hide_caller_id" : "HideCallerId",
+                    "record" : "Record",
+                    "record_callback" : "RecordCallback",
+                    "record_callback_method" : "RecordCallbackMethod",
+                    "transcribe" : "Transcribe",
+                    "transcribe_callback" : "TranscribeCallback",
+                    "straight_to_voicemail": "StraightToVoicemail",
+                    "if_machine" : "IfMachine",
+                    "if_machine_url" : "IfMachineUrl",
+                    "if_machine_method" : "IfMachineMethod"
                 },
                 "update_params": {
                     "status": "Status",
@@ -201,7 +254,9 @@
                     "url": "Url"
                 },
                 "filter_params": [
-                    "To"
+                    "To",
+                    "From",
+                    "DisableFaxDirections"
                 ]
             },
             "plays": {
@@ -324,7 +379,9 @@
                     "api_version",
                     "sms_fallback_method",
                     "date_created",
-                    "status_callback"
+                    "status_callback",
+                    "fax_url",
+                    "fax_method"
                 ],
                 "parent_resources": [
                     "accounts"
@@ -349,7 +406,18 @@
             },
             "available_phone_numbers": {
                 "name": "AvailablePhoneNumber",
-                "url": "AvailablePhoneNumbers/US/Local",
+                "url": "AvailablePhoneNumbers",
+                "attributes": [
+                    "country_code"
+                ],
+                "parent_resources": [
+                    "accounts"
+                ],
+                "create_params": {}
+            },
+            "local": {
+                "name": "Local",
+                "url": "Local",
                 "attributes": [
                     "friendly_name",
                     "phone_number",
@@ -369,14 +437,49 @@
                     "monthly_cost",
                     "voice_enabled",
                     "sms_enabled",
-                    "supports_forwarded_from"
+                    "supports_forwarded_from",
+                    "date_updated"
                 ],
                 "parent_resources": [
-                    "accounts"
+                    "available_phone_numbers"
                 ],
-                "create_params": {
-
-                },
+                "create_params": {},
+                "filter_params": [
+                    "Contains",
+                    "AreaCode",
+                    "InRegion",
+                    "InPostalCode"
+                ]
+            },
+            "tollfree": {
+                "name": "TollFree",
+                "url": "TollFree",
+                "attributes": [
+                    "friendly_name",
+                    "phone_number",
+                    "lata",
+                    "rate_center",
+                    "latitude",
+                    "longitude",
+                    "country_code",
+                    "npa",
+                    "exchange",
+                    "city",
+                    "region",
+                    "postal_code",
+                    "iso_country",
+                    "type",
+                    "setup_cost",
+                    "monthly_cost",
+                    "voice_enabled",
+                    "sms_enabled",
+                    "supports_forwarded_from",
+                    "date_updated"
+                ],
+                "parent_resources": [
+                    "available_phone_numbers"
+                ],
+                "create_params": {},
                 "filter_params": [
                     "Contains",
                     "AreaCode",
@@ -425,7 +528,9 @@
                     "api_version",
                     "sms_fallback_method",
                     "date_created",
-                    "status_callback"
+                    "status_callback",
+                    "fax_url",
+                    "fax_method"
                 ],
                 "parent_resources": [
                     "accounts"
@@ -437,15 +542,7 @@
             "generate_token": {
                 "name": "GenerateToken",
                 "url": "GenerateToken",
-                "attributes": [
-                    "date_updated",
-                    "account_sid",
-                    "application_sid",
-                    "sid",
-                    "date_created",
-                    "client_token",
-                    "client_password"
-                ],
+                "attributes": [],
                 "parent_resources": [
                     "applications"
                 ],
@@ -539,8 +636,10 @@
                     "finishOnKey",
                     "transcribe",
                     "transcribeCallback",
+                    "transcribeQuality",
                     "playBeep",
-                    "bothLegs",
+                    "direction",
+                    "background",
                     "fileFormat"
                 ],
                 "nesting": [],
@@ -565,7 +664,10 @@
                     "straightToVm",
                     "heartbeatUrl",
                     "heartbeatMethod",
-                    "forwardedFrom"
+                    "forwardedFrom",
+                    "ifMachine",
+                    "ifMachineUrl",
+                    "ifMachineMethod"
                 ],
                 "nesting": [
                     "Number",
