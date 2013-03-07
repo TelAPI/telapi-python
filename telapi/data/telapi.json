@@ -186,6 +186,7 @@
                 ],
                 "create_params": {
                     "audio_url": "AudioUrl",
+                    "quality": "Quality",
                     "transcribe_callback": "TranscribeCallback",
                     "callback_method": "CallbackMethod"
                 },
