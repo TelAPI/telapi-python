@@ -543,7 +543,16 @@
             "generate_token": {
                 "name": "GenerateToken",
                 "url": "GenerateToken",
-                "attributes": [],
+                "attributes": [
+                    "sid",
+                    "application_sid",
+                    "date_created",
+                    "date_updated",
+                    "account_sid",
+                    "sdk_token",
+                    "sdk_password",
+                    "uri"
+                ],
                 "parent_resources": [
                     "applications"
                 ],
