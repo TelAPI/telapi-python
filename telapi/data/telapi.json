@@ -321,12 +321,18 @@
                     "is_mobile",
                     "sid",
                     "date_created",
-                    "api_version"
+                    "api_version",
+                    "carrier_lookups"
                 ],
                 "parent_resources": [
                     "accounts"
                 ],
-                "create_params": {}
+                "create_params": {
+                    "phone_number": "PhoneNumber"
+                },
+                "filter_params": [
+                    "PhoneNumber"
+                ]
             },
             "cnam_dips": {
                 "name": "CNAM",
