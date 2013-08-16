@@ -548,7 +548,7 @@
             },
             "generate_token": {
                 "name": "GenerateToken",
-                "url": "GenerateToken",
+                "url": "Clients/Tokens",
                 "attributes": [
                     "sid",
                     "application_sid",
