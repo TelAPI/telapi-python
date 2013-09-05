@@ -565,7 +565,7 @@
                 "parent_resources": [
                     "applications"
                 ],
-                "create_params": {nickname: "Nickname"}
+                "create_params": {"nickname": "Nickname"}
             },
             "fraud": {
                 "name": "Fraud",
