@@ -546,23 +546,26 @@
                     "friendly_name": "FriendlyName"
                 }
             },
-            "generate_token": {
-                "name": "GenerateToken",
-                "url": "GenerateToken",
+            "client_token": {
+                "name": "ClientToken",
+                "url": "Clients/Tokens",
                 "attributes": [
                     "sid",
                     "application_sid",
                     "date_created",
                     "date_updated",
                     "account_sid",
-                    "sdk_token",
-                    "sdk_password",
+                    "presence_status",
+                    "client_password",
+                    "nickname",
+                    "session_id",
+                    "remote_ip",
                     "uri"
                 ],
                 "parent_resources": [
                     "applications"
                 ],
-                "create_params": {}
+                "create_params": {"nickname": "Nickname"}
             },
             "fraud": {
                 "name": "Fraud",
