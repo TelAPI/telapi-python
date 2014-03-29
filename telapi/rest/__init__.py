@@ -413,11 +413,11 @@ class Client(object):
         }
 
         if method == "POST":
-            response = self.session.post(url, data=params, **extra_params)
+            response = self.session.post(url, data=params, verify=False, **extra_params)
         elif method == "DELETE":
-            response = self.session.delete(url, data=params, **extra_params)
+            response = self.session.delete(url, data=params, verify=False, **extra_params)
         else:
-            response = self.session.get(url, params=params, **extra_params)
+            response = self.session.get(url, params=params, verify=False, **extra_params)
 
         if response.status_code >= 400:
                 try:
