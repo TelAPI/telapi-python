@@ -610,7 +610,7 @@
                     "Ping",
                     "PlayLastRecording"
                 ],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/response/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/response/",
                 "blank": false
             },
             "Say": {
@@ -620,7 +620,7 @@
                     "language"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/say/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/say/",
                 "blank": false
             },
             "Play": {
@@ -628,7 +628,7 @@
                     "loop"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/play/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/play/",
                 "blank": false
             },
             "Gather": {
@@ -644,7 +644,7 @@
                     "Play",
                     "Pause"
                 ],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/gather/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/gather/",
                 "blank": true
             },
             "Record": {
@@ -662,7 +662,7 @@
                     "fileFormat"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/record/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/record/",
                 "blank": true
             },
             "Dial": {
@@ -693,7 +693,7 @@
                     "Conference",
                     "Sip"
                 ],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/dial/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/dial/",
                 "blank": false
             },
             "Number": {
@@ -703,7 +703,7 @@
                     "url"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/dial/number/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/dial/number/",
                 "blank": false
             },
             "Conference": {
@@ -723,7 +723,7 @@
                     "stayAlone"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/dial/conference/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/dial/conference/",
                 "blank": false
             },
             "Sip": {
@@ -732,7 +732,7 @@
                     "method"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/dial/sip/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/dial/sip/",
                 "blank": false
             },
             "Hangup": {
@@ -740,7 +740,7 @@
                     "schedule"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/hangup/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/hangup/",
                 "blank": false
             },
             "Redirect": {
@@ -748,7 +748,7 @@
                     "method"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/redirect/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/redirect/",
                 "blank": true
             },
             "Reject": {
@@ -756,7 +756,7 @@
                     "reason"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/reject/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/reject/",
                 "blank": true
             },
             "Pause": {
@@ -764,7 +764,7 @@
                     "length"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/pause/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/pause/",
                 "blank": true
             },
             "Sms": {
@@ -777,7 +777,7 @@
                     "statusCallbackMethod"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/sms/sms/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/sms/sms/",
                 "blank": false
             },
             "Ping": {
@@ -785,13 +785,13 @@
                     "method"
                 ],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/ping/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/ping/",
                 "blank": false
             },
             "PlayLastRecording": {
                 "attributes": [],
                 "nesting": [],
-                "docs_url": "http: //www.telapi.com/docs/api/inboundxml/voice/playlastrecording/",
+                "docs_url": "http://www.telapi.com/docs/api/inboundxml/voice/playlastrecording/",
                 "blank": true
             }
         }
