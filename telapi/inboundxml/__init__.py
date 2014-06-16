@@ -2,6 +2,7 @@ from xml.sax.saxutils import escape
 from new import classobj
 from telapi.schema import SCHEMA
 
+
 class Element(object):
     """Root XML element. Also, base class for all other InboundXML elements"""
 
@@ -41,7 +42,7 @@ class Element(object):
             attribute_string = ' ' + ' '.join(['%s="%s"' % (escape(unicode(k)), escape(unicode(v))) 
                 for k, v in self._attributes.items()])
 
-        return u"<%s%s>%s</%s>" % (self._element_name, attribute_string, body_string, self._element_name)
+        return u"<%s%s>%s</%s>" % (self._element_name, attribute_string, escape(body_string), self._element_name)
 
     def _ensure_attribute(self, name):
         if name not in self._allowed_attributes:
