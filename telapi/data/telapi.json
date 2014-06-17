@@ -409,7 +409,13 @@
                 "update_params": {
                     "voice_url": "VoiceUrl",
                     "voice_url": "VoiceUrl"
-                }
+                },
+                "filter_params": [
+                    "Contains",
+                    "AreaCode",
+                    "InRegion",
+                    "InPostalCode"
+                ]
             },
             "available_phone_numbers": {
                 "name": "AvailablePhoneNumber",
