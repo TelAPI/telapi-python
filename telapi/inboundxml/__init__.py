@@ -32,7 +32,7 @@ class Element(object):
 
     def __unicode__(self):
         attribute_string = ''
-        body_string = ''.join([unicode(child) for child in self._children]) or self._body
+        body_string = ''.join([unicode(child) for child in self._children]) or escape(unicode(self._body))
 
         if not self._allow_blank and not body_string.strip():
             raise ValueError('The "%s" element cannot be blank!' % 
@@ -42,7 +42,7 @@ class Element(object):
             attribute_string = ' ' + ' '.join(['%s="%s"' % (escape(unicode(k)), escape(unicode(v))) 
                 for k, v in self._attributes.items()])
 
-        return u"<%s%s>%s</%s>" % (self._element_name, attribute_string, escape(body_string), self._element_name)
+        return u"<%s%s>%s</%s>" % (self._element_name, attribute_string, body_string, self._element_name)
 
     def _ensure_attribute(self, name):
         if name not in self._allowed_attributes:
