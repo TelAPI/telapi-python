@@ -19,7 +19,7 @@ class Element(object):
         self._children     = []
 
         for i, arg in enumerate(args):
-            if i == 0 and isinstance(arg, str):
+            if i == 0 and isinstance(arg, basestring):
                 self._body = arg
             elif isinstance(arg, Element):
                 self._children.append(arg)
