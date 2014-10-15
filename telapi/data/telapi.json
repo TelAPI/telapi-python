@@ -229,7 +229,7 @@
                     "url": "Url",
                     "method" : "Method",
                     "timeout" : "Timeout",
-                    "send_digits" : "SendDigits",
+                    "send_digits" : "PlayDtmf",
                     "status_callback" : "StatusCallback",
                     "status_callback_method" : "StatusCallbackMethod",
                     "fallback_url" : "FallbackUrl",
