@@ -1,3 +1,5 @@
+**PLEASE NOTE THAT THIS LIBRARY IS NOT ACTIVELY MAINTAINED BY TELAPI**
+
 telapi-python
 =============
 
